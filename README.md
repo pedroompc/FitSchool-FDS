@@ -75,5 +75,19 @@ Criar uma plataforma intuitiva onde usuários possam:
 <details>
 <summary>✅Entrega 01</summary>
 
-
-- 📜 **[Histórias](https://docs.google.com/document/d/12vsnIQhZbG89ULeSa_zud4LqFG7dVn5y3V7VkFezCMk/edit?tab=t.0#heading=h.w051q7v96onx)**  
+ <p align="center">
+   <a href="https://calic4.atlassian.net/jira/software/projects/FS/boards/2/backlog?atlOrigin=eyJpIjoiODQxNjhhZmRjNmVkNDc3OGFkYmQ4NTNiNTE4ODQyNTUiLCJwIjoiaiJ9">
+      <img src="https://img.shields.io/badge/JIRA-0052CC?style=for-the-badge&logo=jira&logoColor=white" />
+    </a>
+    <a href="">
+      <img src="https://img.shields.io/badge/Screencast-FF0000?style=for-the-badge&logo=youtube&logoColor=white" />
+    </a>
+    <a href="https://www.figma.com/design/YTmEkjpL48Eg9qs2oBGeGP/ARTHUR-SINDEAUX-DE-ARA%C3%9AJO-NOGUEIRA-s-team-library?node-id=0-1&t=oZspbeZIZifazQ0o-1">
+      <img src="https://img.shields.io/badge/FIGMA%20-purple?style=for-the-badge&logo=figma&logoColor=white" />
+    </a>
+    <a href="https://docs.google.com/document/d/12vsnIQhZbG89ULeSa_zud4LqFG7dVn5y3V7VkFezCMk/edit?tab=t.0#heading=h.w051q7v96onx">
+      <img src="https://img.shields.io/badge/Histórias-blue?style=for-the-badge&logo=google-docs&logoColor=white" />
+    </a>
+</a>
+    
+  </p>
