@@ -91,3 +91,13 @@ Criar uma plataforma intuitiva onde usuários possam:
 </a>
     
   </p>
+
+  - **[Sprint Jira]**
+  <img width="1331" height="773" alt="image" src="https://github.com/user-attachments/assets/52308b49-6812-4dff-bec6-a78536ab0a6f" />
+
+  - **[BackLog Jira]**
+    <img width="1712" height="343" alt="image" src="https://github.com/user-attachments/assets/8ebe3931-ddb4-4da8-a356-92b379abad9b" />
+
+
+   
+
