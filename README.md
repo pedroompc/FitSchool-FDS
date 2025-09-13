@@ -67,8 +67,7 @@ Criar uma plataforma intuitiva onde usuários possam:
 - **Arthur Oliveiras** - [aof@cesar.school](mailto:aof@cesar.school)  
 - **João Henrique** - [jhbw@cesar.school](mailto:jhbw@cesar.school)  
 - **Vinicius Pessoa** - [vpmd@cesar.school](mailto:vpmd@cesar.school)  
-- **João Pedro** - [jpss2@cesar.school](mailto:jpss2@cesar.school)
-- **Lucas Pinto** - [lprb@cesar.school.school](mailto:lprb@cesar.school) 
+- **Lucas Pinto** - [lprb@cesar.school](mailto:lprb@cesar.school) 
 
 
 ## 📌 Entregas ✅ 
