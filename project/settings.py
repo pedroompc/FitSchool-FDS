@@ -37,10 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    ## apps criado
     'usuario',
     'fitschool'
-    # novo app aqui
 ]
 
 MIDDLEWARE = [

@@ -1,3 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from .forms import RegistroForm
 
-# Create your views here.
+def registrar(request):
+    if request.method == "POST":
+        form = RegistroForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("login")
+    else:
+        form = RegistroForm()
+    return render(request, "fitschool/pages/registro.html", {"form": form})
