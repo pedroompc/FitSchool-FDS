@@ -347,20 +347,92 @@ nav ul li a:hover {
   box-shadow: 0 15px 30px rgba(0,0,0,0.3);
 }
 
-/* Sidebar */
-.sidebar {
-  width: 240px;            /* largura fixa */
-  background: var(--primary);
-  color: var(--light);
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  flex-shrink: 0;          /* impede a sidebar de "sumir" no flex */
+.layout {
+  display: flex; /* coloca sidebar e conteúdo lado a lado */
 }
 
-/* Conteúdo */
-.content {
-  flex: 1;                 /* ocupa o espaço restante */
+.sidebar {
+  width: 250px;             
+  height: 100vh;             
+  background: var(--primary);  
+  color: var(--light);              
+  padding: 1rem;
+  position: fixed;          
+  top: 0;
+  left: 0;
+}
+
+.sidebar .logo {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.sidebar nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column; /* força ficar em coluna */
+  gap: 1rem; /* espaço entre os itens */
+}
+
+.sidebar nav ul li {
+  margin: 1rem 0;
+}
+
+.sidebar nav ul li a {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: var(--light);
+  text-decoration: none;
+}
+
+.sidebar nav ul li a:hover {
+  background: var(--secondary);
+  color: var(--light);
+  border-radius: 0.5rem;
+}
+
+.sidebar nav ul li a.active {
+  background: var(--accent);
+  color: var(--light);
+  font-weight: bold;
+}
+
+/* conteúdo principal para não ficar por baixo da sidebar */
+
+.menu-content {
+  margin-left: 250px; /* espaço para a sidebar */
   padding: 2rem;
-  background: var(--light-gray);
+  background: #f9f9f9; /* cor clara de fundo */
+  min-height: 100vh;
+}
+
+.page-section {
+  margin-bottom: 2rem;
+}
+
+.hero-card {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  border-radius: 1rem;
+  padding: 2rem;
+  color: white;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+}
+
+.hero-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.card-subtitle {
+  font-size: 1.125rem;
+  opacity: 0.9;
 }
