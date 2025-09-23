@@ -6,7 +6,10 @@ def registrar(request):
         form = RegistroForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("login")
+            return redirect("menu")
     else:
         form = RegistroForm()
     return render(request, "fitschool/pages/registro.html", {"form": form})
+
+def menu_view(request):
+    return render(request, "fitschool/pages/menu.html")

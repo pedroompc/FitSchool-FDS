@@ -286,3 +286,81 @@ nav ul li a:hover {
     color: var(--primary);
 }
 
+/* === Container principal === */
+.space-y-6 > * + * {
+  margin-top: 1.5rem; /* simula o space-y-6 do Tailwind */
+}
+
+/* === Card principal === */
+.bg-gradient-hero {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  border-radius: 1rem;
+  padding: 2rem;
+  color: var(--light);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.bg-gradient-hero:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 25px rgba(0,0,0,0.35);
+}
+
+/* === Flex container === */
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* === Tipografia === */
+.text-4xl {
+  font-size: 2.25rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.text-lg {
+  font-size: 1.125rem;
+  color: rgba(255,255,255,0.9);
+}
+
+.text-3xl {
+  font-size: 1.875rem;
+  font-weight: bold;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-white\/80 {
+  color: rgba(255,255,255,0.8);
+}
+
+.text-white\/90 {
+  color: rgba(255,255,255,0.9);
+}
+
+/* === Sombras === */
+.shadow-large {
+  box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+}
+
+/* Sidebar */
+.sidebar {
+  width: 240px;            /* largura fixa */
+  background: var(--primary);
+  color: var(--light);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;          /* impede a sidebar de "sumir" no flex */
+}
+
+/* Conteúdo */
+.content {
+  flex: 1;                 /* ocupa o espaço restante */
+  padding: 2rem;
+  background: var(--light-gray);
+}
