@@ -52,3 +52,19 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('loginForm').style.display = 'block';
     closeAllModals();
 });
+
+// Simulação de interação com o calendário
+document.querySelectorAll('.calendar-day').forEach(day => {
+    day.addEventListener('click', function () {
+        if (this.classList.contains('present')) {
+            this.classList.remove('present');
+            this.classList.add('absent');
+            this.querySelector('.day-status').textContent = 'Ausente';
+        } else if (this.classList.contains('absent')) {
+            this.classList.remove('absent');
+            this.classList.add('present');
+            this.querySelector('.day-status').textContent = 'Presente';
+        }
+    });
+});
+

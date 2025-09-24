@@ -13,3 +13,6 @@ def registrar(request):
 
 def menu_view(request):
     return render(request, "fitschool/pages/menu.html")
+
+def frequencia(request):
+    return render(request, "fitschool/pages/frequencia.html")

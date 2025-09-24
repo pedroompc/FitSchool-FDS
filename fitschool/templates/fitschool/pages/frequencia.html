@@ -1,0 +1,133 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frequência - FitSchool</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Importando o CSS -->
+     <link rel="stylesheet" href="{% static 'usuario/css/style.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-dumbbell"></i>
+                <span>FitSchool</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Dashboard</a></li>
+                    <li><a href="#">Treinos</a></li>
+                    <li><a href="#">Progresso</a></li>
+                    <li><a href="#" class="active">Frequência</a></li>
+                    <li><a href="#">Professores</a></li>
+                </ul>
+            </nav>
+            <div class="user-actions">
+                <div class="user-info">
+                    <div class="user-avatar">J</div>
+                    <span>João</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <div class="page-header">
+                <h1 class="page-title">Frequência</h1>
+                <button class="btn btn-primary">
+                    <i class="fas fa-calendar-plus"></i> Registrar Presença
+                </button>
+            </div>
+
+            <!-- Cards de Estatísticas -->
+            <div class="stats-cards">
+                <div class="stat-card">
+                    <div class="stat-icon present">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>22</h3>
+                        <p>Dias Presentes</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon absent">
+                        <i class="fas fa-times"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>3</h3>
+                        <p>Dias Ausentes</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: var(--warning);">
+                        <i class="fas fa-percentage"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>88%</h3>
+                        <p>Taxa de Frequência</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Calendário de Frequência -->
+            <div class="frequencia-section">
+                <div class="section-title">
+                    <h2>Calendário de Frequência - Setembro</h2>
+                    <div>
+                        <button class="btn" style="margin-right: 0.5rem;">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="btn">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="calendar-grid">
+                    <!-- Cabeçalho dos dias -->
+                    <div class="calendar-header">Segunda</div>
+                    <div class="calendar-header">Terça</div>
+                    <div class="calendar-header">Quarta</div>
+                    <div class="calendar-header">Quinta</div>
+                    <div class="calendar-header">Sexta</div>
+                    <div class="calendar-header">Sábado</div>
+                    <div class="calendar-header">Domingo</div>
+
+                    <!-- Dias do mês -->
+                    <div class="calendar-day"></div>
+                    <div class="calendar-day"></div>
+                    <div class="calendar-day"></div>
+                    <div class="calendar-day"></div>
+
+                    <!-- Exemplo de dias -->
+                    <div class="calendar-day present">
+                        <div class="day-number">1</div>
+                        <div class="day-status">Presente</div>
+                    </div>
+                    <div class="calendar-day absent">
+                        <div class="day-number">6</div>
+                        <div class="day-status">Ausente</div>
+                    </div>
+                    <div class="calendar-day">
+                        <div class="day-number">7</div>
+                        <div class="day-status">Folga</div>
+                    </div>
+                    <!-- Continue o resto dos dias... -->
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>FitSchool &copy; 2023 - Todos os direitos reservados</p>
+        </footer>
+    </div>
+
+    <!-- Importando o JS -->
+    <script src="../js/script.js"></script>
+</body>
+</html>
