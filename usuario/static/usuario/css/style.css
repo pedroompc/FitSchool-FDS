@@ -407,13 +407,14 @@ nav ul li a:hover {
   left: 250px; /* keeps space for sidebar */
   right: 0;
   height: 60px;
-  background: #fff;
+  background: white;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 1.5rem;
   border-bottom: 1px solid #ddd;
   z-index: 1000;
+  color: var(--dark);
 }
 
 .topbar-left {
@@ -471,12 +472,13 @@ nav ul li a:hover {
   flex-direction: row !important;
   align-items: center !important;
   gap: 0.25rem !important;
+  color: var(--dark);
   white-space: nowrap;   /* prevent line break */
 }
 
 .user-info .user-text small {
   font-size: 0.85rem;
-  color: gray;
+  color: var(--dark);
 }
 
 /* Frequência Section */
