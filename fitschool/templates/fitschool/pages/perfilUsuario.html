@@ -1,0 +1,145 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitschool - Perfil do Usuário</title>
+    <!-- CSS Global -->
+    <link rel="stylesheet" href="{% static 'usuario/css/style.css' %}">
+    <!-- CSS exclusivo do perfil -->
+    <link rel="stylesheet" href="{% static 'usuario/css/style2.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="logo">
+            <h1>Fitschool</h1>
+        </div>
+        
+        <div class="user-info">
+            <div class="avatar">{{ user.username|first|upper }}</div>
+            <div class="user-details">
+                <h3>{{ user.username }}</h3>
+                <p>{{ user.email }}</p>
+            </div>
+        </div>
+        
+        <ul class="menu">
+            <li><a href="#" class="active"><i class="fas fa-user"></i> Meu Perfil</a></li>
+            <li><a href="#"><i class="fas fa-bell"></i> Notificações</a></li>
+            <li><a href="#"><i class="fas fa-dumbbell"></i> Meus Treinos</a></li>
+            <li><a href="#"><i class="fas fa-clock"></i> Meus Horários</a></li>
+            <li><a href="#"><i class="fas fa-chalkboard-teacher"></i> Professores</a></li>
+            <li><a href="#"><i class="fas fa-calendar-check"></i> Frequência</a></li>
+        </ul>
+    </aside>
+    
+    <!-- Conteúdo Principal -->
+    <main class="main-content">
+        <div class="header">
+            <h2>Perfil do Usuário</h2>
+        </div>
+        
+        <div class="profile-section">
+            <!-- Informações do Perfil -->
+            <div class="profile-card">
+                <div class="profile-header">
+                    <div class="profile-avatar">U</div>
+                    <div class="profile-info">
+                        <h3>{{ user.username }}</h3>
+                        <p>{{ user.email }}</p>
+                    </div>
+                </div>
+                
+                <div class="profile-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Idade:</span>
+                        <span class="detail-value">X</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Altura:</span>
+                        <span class="detail-value">X cm</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Peso:</span>
+                        <span class="detail-value">X kg</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">IMC:</span>
+                        <span class="detail-value">X</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Meus Objetivos -->
+            <div class="goals-card">
+                <div class="card-header">
+                    <h3>Meus Objetivos</h3>
+                    <a href="#">Ver todos <i class="fas fa-chevron-right"></i></a>
+                </div>
+                
+                <div class="goal-item">
+                    <div class="goal-icon">
+                        <i class="fas fa-weight"></i>
+                    </div>
+                    <div class="goal-info">
+                        <h4>Perda de Peso</h4>
+                        <p>Meta: Perder 5kg em 2 meses</p>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 60%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="goal-item">
+                    <div class="goal-icon">
+                        <i class="fas fa-running"></i>
+                    </div>
+                    <div class="goal-info">
+                        <h4>Resistência Cardiovascular</h4>
+                        <p>Meta: Correr 5km sem parar</p>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 30%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="goal-item">
+                    <div class="goal-icon">
+                        <i class="fas fa-dumbbell"></i>
+                    </div>
+                    <div class="goal-info">
+                        <h4>Ganho de Massa Muscular</h4>
+                        <p>Meta: Aumentar 2kg de músculo</p>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 45%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Minha Evolução -->
+        <div class="evolution-card">
+            <div class="card-header">
+                <h3>Minha Evolução</h3>
+                <a href="#">Ver detalhes <i class="fas fa-chevron-right"></i></a>
+            </div>
+            
+            <div class="evolution-chart">
+                <div class="chart-bar" style="height: 70%"><span class="chart-bar-label">Jan</span></div>
+                <div class="chart-bar" style="height: 50%"><span class="chart-bar-label">Fev</span></div>
+                <div class="chart-bar" style="height: 60%"><span class="chart-bar-label">Mar</span></div>
+                <div class="chart-bar" style="height: 80%"><span class="chart-bar-label">Abr</span></div>
+                <div class="chart-bar" style="height: 75%"><span class="chart-bar-label">Mai</span></div>
+                <div class="chart-bar" style="height: 90%"><span class="chart-bar-label">Jun</span></div>
+                <div class="chart-bar" style="height: 85%"><span class="chart-bar-label">Jul</span></div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

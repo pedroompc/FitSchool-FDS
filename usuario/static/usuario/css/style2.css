@@ -1,0 +1,337 @@
+ :root {
+            --primary-color: #3a86ff;
+            --secondary-color: #8338ec;
+            --dark-color: #1a1a2e;
+            --light-color: #f8f9fa;
+            --gray-color: #6c757d;
+            --success-color: #38b000;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f5f7fb;
+    color: var(--dark-color);
+    display: flex;
+    min-height: 100vh;
+}
+
+/* === Sidebar === */
+.sidebar {
+    width: 250px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--box-shadow);
+    z-index: 100;
+}
+
+.logo {
+    padding: 0 20px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 20px;
+}
+
+.logo h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.user-info {
+    padding: 0 20px 20px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 20px;
+}
+
+.avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    color: var(--primary-color);
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.user-details h3 {
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+.user-details p {
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
+
+/* Menu */
+.menu {
+    list-style: none;
+    padding: 0 10px;
+}
+
+.menu li {
+    margin-bottom: 5px;
+}
+
+.menu a {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    color: white;
+    text-decoration: none;
+    border-radius: var(--border-radius);
+    transition: all 0.3s ease;
+}
+
+.menu a:hover, .menu a.active {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.menu i {
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+}
+
+/* Main */
+.main-content {
+    flex: 1;
+    padding: 30px;
+    overflow-y: auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.header h2 {
+    font-size: 1.8rem;
+    color: var(--dark-color);
+}
+
+/* Profile Section */
+.profile-section {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.profile-card {
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 25px;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profile-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+.profile-info h3 {
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+}
+
+.profile-info p {
+    color: var(--gray-color);
+    font-size: 0.9rem;
+}
+
+.profile-details {
+    margin-top: 20px;
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.detail-item:last-child {
+    border-bottom: none;
+}
+
+.detail-label {
+    color: var(--gray-color);
+}
+
+.detail-value {
+    font-weight: 500;
+}
+
+/* Goals */
+.goals-card, .evolution-card {
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 25px;
+    margin-bottom: 30px;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.card-header h3 {
+    font-size: 1.3rem;
+    color: var(--dark-color);
+}
+
+.card-header a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.goal-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.goal-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.goal-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(58, 134, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    color: var(--primary-color);
+}
+
+.goal-info h4 {
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+.goal-info p {
+    font-size: 0.8rem;
+    color: var(--gray-color);
+}
+
+.progress-bar {
+    height: 8px;
+    background-color: #e9ecef;
+    border-radius: 4px;
+    margin-top: 8px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    border-radius: 4px;
+}
+
+/* Evolution Chart */
+.evolution-chart {
+    height: 200px;
+    background-color: #f8f9fa;
+    border-radius: var(--border-radius);
+    display: flex;
+    align-items: flex-end;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+.chart-bar {
+    flex: 1;
+    background: linear-gradient(to top, var(--primary-color), var(--secondary-color));
+    margin: 0 5px;
+    border-radius: 4px 4px 0 0;
+    position: relative;
+}
+
+.chart-bar-label {
+    position: absolute;
+    bottom: -25px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 0.7rem;
+    color: var(--gray-color);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: 100%;
+        height: auto;
+    }
+    
+    .profile-section {
+        grid-template-columns: 1fr;
+    }
+    
+    .menu {
+        display: flex;
+        overflow-x: auto;
+        padding-bottom: 10px;
+    }
+    
+    .menu li {
+        margin-bottom: 0;
+        margin-right: 10px;
+        flex-shrink: 0;
+    }
+    
+    .menu a {
+        white-space: nowrap;
+    }
+}
+

@@ -68,3 +68,26 @@ document.querySelectorAll('.calendar-day').forEach(day => {
     });
 });
 
+// Simulação de interatividade básica
+document.addEventListener('DOMContentLoaded', function() {
+    // Adicionar evento de clique aos itens do menu
+    const menuItems = document.querySelectorAll('.menu a');
+    menuItems.forEach(item => {
+        item.addEventListener('click', function(e) {
+            e.preventDefault();
+            menuItems.forEach(i => i.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const sidebar = document.getElementById("perfilSidebar");
+    const main = document.getElementById("perfilMain");
+    const toggleBtn = document.getElementById("toggleSidebar");
+
+    toggleBtn.addEventListener("click", () => {
+        sidebar.classList.toggle("collapsed");
+        main.classList.toggle("expanded");
+    });
+});

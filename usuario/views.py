@@ -2,6 +2,14 @@ from django.shortcuts import render, redirect
 from .forms import RegistroForm
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+
+
+@login_required
+def perfilUsuario(request):
+    return render(request, 'fitschool/pages/perfilUsuario.html', {
+        "user": request.user
+    })
 
 def login_user(request):
     if request.method == "POST":
