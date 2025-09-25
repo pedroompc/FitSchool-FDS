@@ -45,33 +45,53 @@
         <div class="profile-section">
             <!-- Informações do Perfil -->
             <div class="profile-card">
-                <div class="profile-header">
-                    <div class="profile-avatar">U</div>
-                    <div class="profile-info">
-                        <h3>{{ user.username }}</h3>
-                        <p>{{ user.email }}</p>
-                    </div>
-                </div>
-                
-                <div class="profile-details">
-                    <div class="detail-item">
-                        <span class="detail-label">Idade:</span>
-                        <span class="detail-value">X</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="detail-label">Altura:</span>
-                        <span class="detail-value">X cm</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="detail-label">Peso:</span>
-                        <span class="detail-value">X kg</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="detail-label">IMC:</span>
-                        <span class="detail-value">X</span>
-                    </div>
-                </div>
+    <div class="profile-header">
+        <div class="profile-avatar">U</div>
+        <div class="profile-info">
+            <h3>{{ user.username }}</h3>
+            <p>{{ user.email }}</p>
+        </div>
+    </div>
+
+    <div class="profile-details">
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="detail-item">
+                <span class="detail-label">Idade:</span>
+                {{ form.idade }}
             </div>
+
+            <div class="detail-item">
+                <span class="detail-label">Altura (cm):</span>
+                {{ form.altura }}
+            </div>
+
+            <div class="detail-item">
+                <span class="detail-label">Peso (kg):</span>
+                {{ form.peso }}
+            </div>
+
+            <div class="detail-item">
+                <span class="detail-label">Meta:</span>
+                {{ form.meta }}
+            </div>
+
+            <div class="detail-item">
+                <span class="detail-label">IMC:</span>
+                <span class="detail-value">
+                    {% if imc %}
+                        {{ imc|floatformat:2 }}
+                    {% else %}
+                        -
+                    {% endif %}
+                </span>
+            </div>
+
+            <button type="submit" class="btn">Salvar Alterações</button>
+        </form>
+    </div>
+</div>
             
             <!-- Meus Objetivos -->
             <div class="goals-card">
@@ -81,64 +101,15 @@
                 </div>
                 
                 <div class="goal-item">
-                    <div class="goal-icon">
-                        <i class="fas fa-weight"></i>
-                    </div>
-                    <div class="goal-info">
-                        <h4>Perda de Peso</h4>
-                        <p>Meta: Perder 5kg em 2 meses</p>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 60%"></div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="goal-item">
-                    <div class="goal-icon">
-                        <i class="fas fa-running"></i>
-                    </div>
-                    <div class="goal-info">
-                        <h4>Resistência Cardiovascular</h4>
-                        <p>Meta: Correr 5km sem parar</p>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 30%"></div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="goal-item">
-                    <div class="goal-icon">
-                        <i class="fas fa-dumbbell"></i>
-                    </div>
-                    <div class="goal-info">
-                        <h4>Ganho de Massa Muscular</h4>
-                        <p>Meta: Aumentar 2kg de músculo</p>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 45%"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="goal-icon">
+        <i class="fas fa-weight"></i>
+    </div>
+    <div class="goal-info">
+        <h4>Meta</h4>
+        <p>{{ perfil.meta|default:"Nenhuma meta definida" }}</p>
+    </div>
+</div>
         
-        <!-- Minha Evolução -->
-        <div class="evolution-card">
-            <div class="card-header">
-                <h3>Minha Evolução</h3>
-                <a href="#">Ver detalhes <i class="fas fa-chevron-right"></i></a>
-            </div>
-            
-            <div class="evolution-chart">
-                <div class="chart-bar" style="height: 70%"><span class="chart-bar-label">Jan</span></div>
-                <div class="chart-bar" style="height: 50%"><span class="chart-bar-label">Fev</span></div>
-                <div class="chart-bar" style="height: 60%"><span class="chart-bar-label">Mar</span></div>
-                <div class="chart-bar" style="height: 80%"><span class="chart-bar-label">Abr</span></div>
-                <div class="chart-bar" style="height: 75%"><span class="chart-bar-label">Mai</span></div>
-                <div class="chart-bar" style="height: 90%"><span class="chart-bar-label">Jun</span></div>
-                <div class="chart-bar" style="height: 85%"><span class="chart-bar-label">Jul</span></div>
-            </div>
-        </div>
-    </main>
 
     <script src="script.js"></script>
 </body>
