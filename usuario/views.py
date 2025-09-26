@@ -81,3 +81,6 @@ def editar_perfil(request):
 
 def meus_treinos(request):
     return render(request, "fitschool/pages/treino.html")
+
+def criar_Atleta(request):
+    return render(request, "fitschool/pages/criarAtleta.html")

@@ -127,3 +127,8 @@ document.getElementById('workoutForm').addEventListener('submit', function(e) {
   alert('Treino salvo com sucesso!');
   closeModal('addWorkoutModal');
 });
+
+document.getElementById('athlete-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Atleta cadastrado com sucesso! (Funcionalidade de envio precisa ser implementada)');
+            });
