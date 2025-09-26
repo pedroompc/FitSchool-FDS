@@ -30,18 +30,30 @@
 
   <div class="layout">
     <!-- Sidebar -->
-    <aside class="sidebar">
-      <nav>
-        <ul class="menu">
-            <li><a href="{% url 'perfilUsuario' %}"></i> Meu Perfil</a></li>
-            <li><a href="#"><i class="fas fa-bell"></i> Notificações</a></li>
-            <li><a href="#"><i class="fas fa-dumbbell"></i> Meus Treinos</a></li>
-            <li><a href="#"><i class="fas fa-clock"></i> Meus Horários</a></li>
-            <li><a href="#"><i class="fas fa-chalkboard-teacher"></i> Professores</a></li>
-            <li><a href= "{% url 'frequencia' %}"><i class="fas fa-calendar-check"></i> Frequência</a></li>
-        </ul>
-      </nav>
-    </aside>
+    <aside class="user-sidebar">
+    <div class="logo">
+        <h1>Fitschool</h1>
+    </div>
+    
+    <!-- Usuário -->
+    <div class="user-info">
+        <div class="avatar">{{ user.username|first|upper }}</div>
+        <div class="user-details">
+            <h3>{{ user.username }}</h3>
+            <p>{{ user.email }}</p>
+        </div>
+    </div>
+    
+    <!-- Menu -->
+    <ul class="menu">
+        <li><a href = "{% url 'perfilUsuario' %}"><i class="fas fa-user"></i> Meu Perfil</a></li>
+        <li><a href="#"><i class="fas fa-bell"></i> Notificações</a></li>
+        <li><a href="#"><i class="fas fa-dumbbell"></i> Meus Treinos</a></li>
+        <li><a href="#"><i class="fas fa-clock"></i> Meus Horários</a></li>
+        <li><a href="#"><i class="fas fa-chalkboard-teacher"></i> Professores</a></li>
+        <li><a href="{% url 'frequencia' %}"><i class="fas fa-calendar-check"></i> Frequência</a></li>
+    </ul>
+</aside>
 
   <main class="menu-content">
   <section class="page-section">
