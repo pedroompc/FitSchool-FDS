@@ -5,8 +5,70 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import PerfilForm
 from .models import Perfil
+from .models import Frequencia
+from django.shortcuts import render
+from django.http import JsonResponse
+from django.views.decorators.http import require_POST
+import json
+from datetime import datetime
 
+@login_required
+def calendario_view(request):
+    # Lógica para buscar os dados de frequência e calcular as estatísticas
+    # Esta parte pode ser mais complexa para gerar o calendário completo,
+    # mas aqui está o essencial.
+    frequencias = Frequencia.objects.filter(usuario=request.user)
+    
+    dias_presentes = frequencias.filter(status='PRESENTE').count()
+    dias_ausentes = frequencias.filter(status='AUSENTE').count()
+    total_dias = dias_presentes + dias_ausentes
+    taxa_frequencia = (dias_presentes / total_dias * 100) if total_dias > 0 else 0
 
+    context = {
+        'frequencias': frequencias, # Você usaria isso para popular o calendário
+        'dias_presentes': dias_presentes,
+        'dias_ausentes': dias_ausentes,
+        'taxa_frequencia': round(taxa_frequencia),
+    }
+    return render(request, 'fitschool/pages/calendario.html', context)
+
+# View para receber a requisição AJAX e registrar/atualizar a presença
+@login_required
+@require_POST # Garante que esta view só aceite requisições POST
+def registrar_presenca(request):
+    try:
+        # Pega os dados enviados pelo JavaScript
+        data = json.loads(request.body)
+        data_selecionada = data.get('date')
+        status_selecionado = data.get('status')
+
+        # Converte a data string para um objeto date
+        data_obj = datetime.strptime(data_selecionada, '%Y-%m-%d').date()
+
+        frequencia, created = Frequencia.objects.update_or_create(
+            usuario=request.user,
+            data=data_obj,
+            defaults={'status': status_selecionado}
+        )
+        
+        frequencias = Frequencia.objects.filter(usuario=request.user)
+        dias_presentes = frequencias.filter(status='PRESENTE').count()
+        dias_ausentes = frequencias.filter(status='AUSENTE').count()
+        total_dias = dias_presentes + dias_ausentes
+        taxa_frequencia = (dias_presentes / total_dias * 100) if total_dias > 0 else 0
+
+        return JsonResponse({
+            'status': 'success',
+            'message': 'Frequência registrada com sucesso!',
+            'updated_stats': {
+                'dias_presentes': dias_presentes,
+                'dias_ausentes': dias_ausentes,
+                'taxa_frequencia': round(taxa_frequencia)
+            }
+        })
+    except Exception as e:
+        return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
+    
 @login_required
 def perfilUsuario(request):
     perfil, created = Perfil.objects.get_or_create(user=request.user)
