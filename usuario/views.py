@@ -6,7 +6,6 @@ from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from datetime import datetime
 import json
-
 from .forms import RegistroForm, AtletaForm
 from .models import Frequencia, Atleta
 
@@ -103,17 +102,24 @@ def criar_Atleta(request):
 
 @login_required
 def criar_atleta(request):
+    try:
+        atleta = Atleta.objects.get(user=request.user)
+    except Atleta.DoesNotExist:
+        atleta = None
+
     if request.method == "POST":
-        form = AtletaForm(request.POST)
+        form = AtletaForm(request.POST, instance=atleta)  # se já existe, edita
         if form.is_valid():
             atleta = form.save(commit=False)
             atleta.user = request.user
             atleta.save()
             return redirect("perfil_usuario")
     else:
-        form = AtletaForm()
+        form = AtletaForm(instance=atleta)  # pré-preenche se já existir
 
     return render(request, "fitschool/pages/criarAtleta.html", {"form": form})
+
+
 
 
 @login_required

@@ -54,39 +54,13 @@
                 </div>
 
                 <div class="profile-details">
-                    <form method="post">
-                        {% csrf_token %}
-
-                        <div class="detail-item">
-                            <span class="detail-label">Nome:</span>
-                            {{ form.nome }}
-                        </div>
-
-                        <div class="detail-item">
-                            <span class="detail-label">Apelido:</span>
-                            {{ form.apelido }}
-                        </div>
-
-                        <div class="detail-item">
-                            <span class="detail-label">Idade:</span>
-                            {{ form.idade }}
-                        </div>
-
-                        <div class="detail-item">
-                            <span class="detail-label">Altura (m):</span>
-                            {{ form.altura }}
-                        </div>
-
-                        <div class="detail-item">
-                            <span class="detail-label">Peso (kg):</span>
-                            {{ form.peso }}
-                        </div>
-
-                        <div class="detail-item">
-                            <span class="detail-label">Objetivo:</span>
-                            {{ form.objetivo }}
-                        </div>
-
+                    {% if atleta %}
+                        <div class="detail-item"><span class="detail-label">Nome:</span> {{ atleta.nome }}</div>
+                        <div class="detail-item"><span class="detail-label">Apelido:</span> {{ atleta.apelido }}</div>
+                        <div class="detail-item"><span class="detail-label">Idade:</span> {{ atleta.idade }}</div>
+                        <div class="detail-item"><span class="detail-label">Altura (m):</span> {{ atleta.altura }}</div>
+                        <div class="detail-item"><span class="detail-label">Peso (kg):</span> {{ atleta.peso }}</div>
+                        <div class="detail-item"><span class="detail-label">Objetivo:</span> {{ atleta.objetivo|default:"Nenhum objetivo definido" }}</div>
                         <div class="detail-item">
                             <span class="detail-label">IMC:</span>
                             <span class="detail-value">
@@ -97,9 +71,10 @@
                                 {% endif %}
                             </span>
                         </div>
-
-                        <button type="submit" class="btn">Salvar Alterações</button>
-                    </form>
+                    {% else %}
+                        <p>Você ainda não cadastrou seus dados de atleta.</p>
+                        <a href="{% url 'criar_atleta' %}" class="btn">Criar Atleta</a>
+                    {% endif %}
                 </div>
             </div>
             

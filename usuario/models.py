@@ -34,5 +34,5 @@ class Atleta(models.Model):
     apelido = models.CharField(max_length=50, blank=True)
     idade = models.PositiveIntegerField(null=True, blank=True)
     peso = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
-    altura = models.DecimalField(max_digits=4, decimal_places=2, null=True, blank=True)
+    altura = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
     objetivo = models.TextField(blank=True)
