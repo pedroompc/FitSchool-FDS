@@ -291,35 +291,6 @@ body {
     border-radius: 4px;
 }
 
-/* Evolution Chart */
-.evolution-chart {
-    height: 200px;
-    background-color: #f8f9fa;
-    border-radius: var(--border-radius);
-    display: flex;
-    align-items: flex-end;
-    padding: 15px;
-    margin-top: 20px;
-}
-
-.chart-bar {
-    flex: 1;
-    background: linear-gradient(to top, var(--primary-color), var(--secondary-color));
-    margin: 0 5px;
-    border-radius: 4px 4px 0 0;
-    position: relative;
-}
-
-.chart-bar-label {
-    position: absolute;
-    bottom: -25px;
-    left: 0;
-    right: 0;
-    text-align: center;
-    font-size: 0.7rem;
-    color: var(--gray-color);
-}
-
 /* Responsividade */
 @media (max-width: 768px) {
     body {
