@@ -10,3 +10,20 @@ class Perfil(models.Model):
 
     def __str__(self):
         return f"Perfil de {self.user.username}"
+
+class Frequencia(models.Model):
+    STATUS_CHOICES = [
+        ('PRESENTE', 'Presente'),
+        ('AUSENTE', 'Ausente'),
+        ('FOLGA', 'Folga'),
+    ]
+    
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    data = models.DateField()
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES)
+
+    class Meta:
+        unique_together = ('usuario', 'data')
+
+    def __str__(self):
+        return f"{self.usuario.username} - {self.data} - {self.status}"

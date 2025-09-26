@@ -124,7 +124,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "usuario/static"),  # adiciona a pasta static do app usuario
+    os.path.join(BASE_DIR, "static"),  # adiciona a pasta static do app usuario
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")  # usado para coletar em produção

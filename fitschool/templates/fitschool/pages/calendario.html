@@ -1,0 +1,123 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitSchool - Frequência</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/calendario_style.css' %}">
+</head>
+<body>
+    <div class="layout">
+        <aside class="user-sidebar">
+            <div class="sidebar-logo">
+                <i class="fas fa-dumbbell"></i>
+                <span>FitSchool</span>
+            </div>
+            <ul class="menu">
+                <li><a href= "{% url 'menu' %}"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+                <li><a href="{% url 'meusTreinos' %}"><i class="fas fa-dumbbell"></i> Treinos</a></li>
+                <li><a href="#"><i class="fas fa-chart-pie"></i> Progresso</a></li>
+                <li><a href="{% url 'frequencia' %}" class="active"><i class="fas fa-calendar-alt"></i> Frequência</a></li>
+                <li><a href="{% url 'perfilUsuario' %}"><i class="fas fa-user-circle"></i> Perfil Usuário</a></li>
+                <li><a href="#"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar">
+                <div class="topbar-left">
+                    <h1 class="page-title">Minha Frequência</h1>
+                </div>
+                <div class="topbar-right">
+                    <div class="user-info">
+                        <div class="avatar">{{ user.username.0|upper }}</div>
+                        <span>{{ user.username }}</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="page-content">
+                <div class="stats-cards">
+                    <div class="stat-card presente">
+                        <div class="stat-icon presente"><i class="fas fa-check"></i></div>
+                        <div class="stat-info">
+                            <h3 id="dias-presentes" class="value">{{ dias_presentes }}</h3>
+                            <p class="label">Dias Presentes</p>
+                        </div>
+                    </div>
+                    <div class="stat-card ausente">
+                        <div class="stat-icon ausente"><i class="fas fa-times"></i></div>
+                        <div class="stat-info">
+                            <h3 id="dias-ausentes" class="value">{{ dias_ausentes }}</h3>
+                            <p class="label">Dias Ausentes</p>
+                        </div>
+                    </div>
+                    <div class="stat-card frequencia">
+                        <div class="stat-icon frequencia"><i class="fas fa-percentage"></i></div>
+                        <div class="stat-info">
+                            <h3 id="taxa-frequencia" class="value">{{ taxa_frequencia }}%</h3>
+                            <p class="label">Taxa de Frequência</p>
+                        </div>
+                    </div>
+                </div>
+
+                <section class="frequencia-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Calendário de Setembro</h2>
+                        <button id="register-presence-btn" class="btn btn-accent">
+                            <i class="fas fa-plus"></i> Registrar Presença
+                        </button>
+                    </div>
+                    <div class="calendar-grid">
+                        <div class="calendar-weekday">Dom</div>
+                        <div class="calendar-weekday">Seg</div>
+                        <div class="calendar-weekday">Ter</div>
+                        <div class="calendar-weekday">Qua</div>
+                        <div class="calendar-weekday">Qui</div>
+                        <div class="calendar-weekday">Sex</div>
+                        <div class="calendar-weekday">Sáb</div>
+
+                        <div class="calendar-day" data-date="2025-09-01">
+                            <div class="day-number">1</div>
+                        </div>
+                        <div class="calendar-day ausente" data-date="2025-09-06">
+                            <div class="day-number">6</div>
+                            <div class="day-status">Ausente</div>
+                        </div>
+                         </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <div id="presence-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Registrar Frequência</h2>
+            <form id="presence-form">
+                {% csrf_token %} 
+                <div class="form-group">
+                    <label for="date-input">Data:</label>
+                    <input type="date" id="date-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <p>Status:</p>
+                    <input type="radio" id="status-presente" name="status" value="PRESENTE" checked>
+                    <label for="status-presente">Presente</label><br>
+                    <input type="radio" id="status-ausente" name="status" value="AUSENTE">
+                    <label for="status-ausente">Ausente</label><br>
+                    <input type="radio" id="status-folga" name="status" value="FOLGA">
+                    <label for="status-folga">Folga</label><br>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Confirmar</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="{% static 'js/calendario.js' %}"></script>
+</body>
+</html>
