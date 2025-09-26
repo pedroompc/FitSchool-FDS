@@ -18,17 +18,18 @@
       </div>
       <nav>
         <ul>
-          <li><a href="#">Dashboard</a></li>
+          <li><a href = "{% url 'menu' %}" >Dashboard</a></li>
           <li><a href="#" class="active">Treinos</a></li>
-          <li><a href="#">Perfil Usuario</a></li>
+          <li><a href = "{% url 'perfilUsuario' %}" >Perfil Usuário</a></li>
           <li><a href="#">Professor</a></li>
-          <li><a href="#">Dicas</a></li>
+          <li><a href = "{% url 'frequencia' %}" >Frequência</a></li>
+
         </ul>
       </nav>
-      <div class="user-actions">
-        <div class="user-info">
-          <h3>{{ user.username }}</h3>
-        </div>
+      <div class="user-info">
+      <div class="user-text">
+        <h3>{{ user.username }}</h3>
+      </div>
       </div>
     </header>
 
