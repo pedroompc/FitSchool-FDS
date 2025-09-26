@@ -2,60 +2,170 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FitSchool - Treinos</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Treinos - FitSchool</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="{% static 'usuario/css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'usuario/css/styleTreino.css' %}">
 </head>
 <body>
-    <!-- Navbar -->
+  <div class="container">
     <header>
-        <nav class="navbar">
-            <div class="logo">🏋️ FitSchool</div>
-            <ul class="nav-links">
-                <li><a href="home.html">Início</a></li>
-                <li><a href="treinos.html" class="active">Treinos</a></li>
-                <li><a href="professores.html">Professores</a></li>
-                <li><a href="perfil.html">Perfil</a></li>
-            </ul>
-            <div class="auth-buttons">
-                <button class="btn-outline" onclick="showLogin()">Entrar</button>
-                <button class="btn-primary" onclick="showRegister()">Registrar</button>
-            </div>
-        </nav>
+      <div class="logo">
+        <i class="fas fa-dumbbell"></i>
+        <span>FitSchool</span>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#">Dashboard</a></li>
+          <li><a href="#" class="active">Treinos</a></li>
+          <li><a href="#">Perfil Usuario</a></li>
+          <li><a href="#">Professor</a></li>
+          <li><a href="#">Dicas</a></li>
+        </ul>
+      </nav>
+      <div class="user-actions">
+        <div class="user-info">
+          <h3>{{ user.username }}</h3>
+        </div>
+      </div>
     </header>
 
-    <!-- Conteúdo principal -->
-    <main class="container">
-        <h1>Seus Treinos</h1>
-        <p>Aqui você pode visualizar e adicionar novos treinos.</p>
+    <div class="main-content">
+      <div class="page-header">
+        <h1 class="page-title">Meus Treinos</h1>
+        <button class="btn btn-primary" onclick="showAddWorkoutModal()">
+          <i class="fas fa-plus"></i> Novo Treino
+        </button>
+      </div>
 
-        <button class="btn-primary" onclick="showAddWorkout()">+ Adicionar Treino</button>
-
-        <!-- Lista de treinos -->
-        <div id="workoutList" class="workout-list">
-            <p>Nenhum treino adicionado ainda.</p>
+      <div class="workout-filters">
+        <div class="filter-group">
+          <label for="workout-type">Tipo de Treino</label>
+          <select id="workout-type">
+            <option value="">Todos os tipos</option>
+            <option value="strength">Força</option>
+            <option value="cardio">Cardio</option>
+            <option value="hypertrophy">Hipertrofia</option>
+            <option value="endurance">Resistência</option>
+          </select>
         </div>
-    </main>
-
-    <!-- Modal de adicionar treino -->
-    <div id="addWorkoutModal" class="modal">
-        <div class="modal-content">
-            <h2>Adicionar Treino</h2>
-            <form onsubmit="event.preventDefault(); addWorkout();">
-                <label for="workoutName">Nome do treino:</label>
-                <input type="text" id="workoutName" required>
-
-                <label for="workoutDesc">Descrição:</label>
-                <textarea id="workoutDesc" rows="3" required></textarea>
-
-                <div class="modal-actions">
-                    <button type="submit" class="btn-primary">Salvar</button>
-                    <button type="button" class="btn-outline" onclick="closeModal('addWorkoutModal')">Cancelar</button>
-                </div>
-            </form>
+        <div class="filter-group">
+          <label for="workout-day">Dia da Semana</label>
+          <select id="workout-day">
+            <option value="">Todos os dias</option>
+            <option value="monday">Segunda-feira</option>
+            <option value="tuesday">Terça-feira</option>
+            <option value="wednesday">Quarta-feira</option>
+            <option value="thursday">Quinta-feira</option>
+            <option value="friday">Sexta-feira</option>
+            <option value="saturday">Sábado</option>
+            <option value="sunday">Domingo</option>
+          </select>
         </div>
+        <div class="filter-group">
+          <label for="search">Buscar</label>
+          <input type="text" id="search" placeholder="Nome do treino">
+        </div>
+      </div>
+
+      <div class="workout-list">
+        <!-- Cards de exemplo -->
+        <div class="workout-card">
+          <div class="workout-header">
+            <h3 class="workout-title">Superiores A</h3>
+            <span class="workout-type">Força</span>
+          </div>
+          <div class="workout-body">
+            <div class="workout-detail"><span>Dia:</span><span>Segunda-feira</span></div>
+            <div class="workout-detail"><span>Duração:</span><span>60 min</span></div>
+            <div class="workout-detail"><span>Exercícios:</span><span>5</span></div>
+            <div class="exercise-list">
+              <div class="exercise-item"><span>Supino Reto</span><span>3x12 - 40kg</span></div>
+              <div class="exercise-item"><span>Remada Curvada</span><span>3x10 - 35kg</span></div>
+              <div class="exercise-item"><span>Desenvolvimento</span><span>3x12 - 20kg</span></div>
+            </div>
+          </div>
+          <div class="workout-footer">
+            <div class="workout-actions">
+              <button class="btn-icon" title="Iniciar treino"><i class="fas fa-play"></i></button>
+              <button class="btn-icon" title="Editar treino" onclick="showEditWorkoutModal()"><i class="fas fa-edit"></i></button>
+              <button class="btn-icon" title="Excluir treino"><i class="fas fa-trash"></i></button>
+            </div>
+            <span class="workout-status completed">Concluído</span>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <footer>
+      <p>FitSchool &copy; 2025 - Todos os direitos reservados</p>
+    </footer>
+  </div>
+
+  <!-- Modal Adicionar Treino -->
+  <div class="modal" id="addWorkoutModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">Adicionar Novo Treino</h2>
+        <span class="close" onclick="closeModal('addWorkoutModal')">&times;</span>
+      </div>
+      <form id="workoutForm">
+        <div class="form-group">
+          <label for="workout-name">Nome do Treino</label>
+          <input type="text" id="workout-name" placeholder="Ex: Superiores A" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="workout-type-modal">Tipo de Treino</label>
+            <select id="workout-type-modal" required>
+              <option value="">Selecione o tipo</option>
+              <option value="strength">Força</option>
+              <option value="cardio">Cardio</option>
+              <option value="hypertrophy">Hipertrofia</option>
+              <option value="endurance">Resistência</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="workout-day-modal">Dia da Semana</label>
+            <select id="workout-day-modal" required>
+              <option value="">Selecione o dia</option>
+              <option value="monday">Segunda-feira</option>
+              <option value="tuesday">Terça-feira</option>
+              <option value="wednesday">Quarta-feira</option>
+              <option value="thursday">Quinta-feira</option>
+              <option value="friday">Sexta-feira</option>
+              <option value="saturday">Sábado</option>
+              <option value="sunday">Domingo</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="workout-duration">Duração (minutos)</label>
+          <input type="number" id="workout-duration" placeholder="Ex: 60" min="5" max="180" required>
+        </div>
+        <div class="form-group">
+          <label for="workout-notes">Observações</label>
+          <textarea id="workout-notes" rows="3" placeholder="Observações sobre o treino"></textarea>
+        </div>
+        <h3>Exercícios</h3>
+        <div class="exercise-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="exercise-name">Nome do Exercício</label>
+              <input type="text" id="exercise-name" placeholder="Ex: Supino Reto">
+            </div>
+          </div>
+          <button type="button" class="add-exercise-btn">
+            <i class="fas fa-plus"></i> Adicionar Exercício
+          </button>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%;">Salvar Treino</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>

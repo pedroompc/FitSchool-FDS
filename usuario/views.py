@@ -78,3 +78,6 @@ def editar_perfil(request):
         form = PerfilForm(instance=perfil)
     
     return render(request, "usuario/editar_perfil.html", {"form": form})
+
+def meus_treinos(request):
+    return render(request, "fitschool/pages/treino.html")

@@ -91,3 +91,39 @@ document.addEventListener("DOMContentLoaded", function () {
         main.classList.toggle("expanded");
     });
 });
+
+// Função para mostrar modal de adicionar treino
+function showAddWorkoutModal() {
+  document.getElementById('addWorkoutModal').style.display = 'flex';
+}
+
+// Função para mostrar modal de editar treino
+function showEditWorkoutModal() {
+  document.getElementById('workout-name').value = 'Superiores A';
+  document.getElementById('workout-type-modal').value = 'strength';
+  document.getElementById('workout-day-modal').value = 'monday';
+  document.getElementById('workout-duration').value = '60';
+  document.getElementById('workout-notes').value = 'Treino de peito e costas';
+
+  document.getElementById('addWorkoutModal').style.display = 'flex';
+  document.querySelector('.modal-title').textContent = 'Editar Treino';
+}
+
+// Função para fechar modal
+function closeModal(modalId) {
+  document.getElementById(modalId).style.display = 'none';
+}
+
+// Fechar modal ao clicar fora dele
+window.onclick = function(event) {
+  if (event.target.classList.contains('modal')) {
+    event.target.style.display = 'none';
+  }
+}
+
+// Prevenir envio do formulário
+document.getElementById('workoutForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  alert('Treino salvo com sucesso!');
+  closeModal('addWorkoutModal');
+});
