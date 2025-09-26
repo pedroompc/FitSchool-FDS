@@ -103,8 +103,8 @@ def criar_Atleta(request):
 @login_required
 def criar_atleta(request):
     if hasattr(request.user, "atleta"):
-        # se já existe, manda pra edição
-        return redirect("editar_atleta")
+        # Já existe atleta → não deixa recriar
+        return redirect("perfil_usuario")
 
     if request.method == "POST":
         form = AtletaForm(request.POST)
