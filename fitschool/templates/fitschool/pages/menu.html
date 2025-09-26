@@ -13,7 +13,6 @@
 <header class="topbar">
   <div class="topbar-left">
     <h2 class="logo">FitSchool</h2>
-    <span class="page-title">Dashboard</span>
   </div>
 
   <div class="topbar-right">
@@ -24,7 +23,6 @@
     <div class="user-info">
       <div class="user-text">
         <h3>{{ user.username }}</h3>
-        <small>Aluno</small>
       </div>
     </div>
   </div>
@@ -33,15 +31,14 @@
   <div class="layout">
     <!-- Sidebar -->
     <aside class="sidebar">
-      <h2 class="logo">FitSchool</h2>
       <nav>
-        <ul>
-          <li><a href="#"> Menu</a></li>
-          <li><a href="{% url 'perfilUsuario' %}">Meu Perfil</a></li>
-          <li><a href="#">Notificações</a></li>
-          <li><a href="#">Meus Treinos</a></li>
-          <li><a href="#">Professores</a></li>
-          <li><a href="{% url 'frequencia' %}">Frequência</a></li>
+        <ul class="menu">
+            <li><a href="{% url 'perfilUsuario' %}"></i> Meu Perfil</a></li>
+            <li><a href="#"><i class="fas fa-bell"></i> Notificações</a></li>
+            <li><a href="#"><i class="fas fa-dumbbell"></i> Meus Treinos</a></li>
+            <li><a href="#"><i class="fas fa-clock"></i> Meus Horários</a></li>
+            <li><a href="#"><i class="fas fa-chalkboard-teacher"></i> Professores</a></li>
+            <li><a href= "{% url 'frequencia' %}"><i class="fas fa-calendar-check"></i> Frequência</a></li>
         </ul>
       </nav>
     </aside>
