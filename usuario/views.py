@@ -1,22 +1,17 @@
 from django.shortcuts import render, redirect
-from .forms import RegistroForm
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .forms import PerfilForm
-from .models import Perfil
-from .models import Frequencia
-from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
-import json
 from datetime import datetime
+import json
+
+from .forms import RegistroForm, AtletaForm
+from .models import Frequencia, Atleta
 
 @login_required
 def calendario_view(request):
-    # Lógica para buscar os dados de frequência e calcular as estatísticas
-    # Esta parte pode ser mais complexa para gerar o calendário completo,
-    # mas aqui está o essencial.
     frequencias = Frequencia.objects.filter(usuario=request.user)
     
     dias_presentes = frequencias.filter(status='PRESENTE').count()
@@ -69,33 +64,6 @@ def registrar_presenca(request):
     except Exception as e:
         return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
     
-@login_required
-def perfilUsuario(request):
-    perfil, created = Perfil.objects.get_or_create(user=request.user)
-
-    if request.method == "POST":
-        form = PerfilForm(request.POST, instance=perfil)
-        if form.is_valid():
-            form.save()
-    else:
-        form = PerfilForm(instance=perfil)
-
-    # cálculo do IMC
-    imc = None
-    if perfil.peso and perfil.altura:
-        try:
-            altura_m = float(perfil.altura) / 100
-            imc = float(perfil.peso) / (altura_m ** 2)
-        except ZeroDivisionError:
-            imc = None
-
-    return render(request, "fitschool/pages/perfilUsuario.html", {
-        "user": request.user,
-        "perfil": perfil,
-        "form": form,
-        "imc": imc,
-    })
-
 def login_user(request):
     if request.method == "POST":
         username = request.POST.get("username")  
@@ -127,22 +95,59 @@ def menu_view(request):
 def frequencia(request):
     return render(request, "fitschool/pages/frequencia.html")
 
-@login_required
-def editar_perfil(request):
-    perfil, created = Perfil.objects.get_or_create(user=request.user)  # cria se não existir
-    
-    if request.method == "POST":
-        form = PerfilForm(request.POST, instance=perfil)
-        if form.is_valid():
-            form.save()
-            return redirect("editar_perfil")  # recarrega a página (ou redireciona)
-    else:
-        form = PerfilForm(instance=perfil)
-    
-    return render(request, "usuario/editar_perfil.html", {"form": form})
-
 def meus_treinos(request):
     return render(request, "fitschool/pages/treino.html")
 
 def criar_Atleta(request):
     return render(request, "fitschool/pages/criarAtleta.html")
+
+@login_required
+def criar_atleta(request):
+    if request.method == "POST":
+        form = AtletaForm(request.POST)
+        if form.is_valid():
+            atleta = form.save(commit=False)
+            atleta.user = request.user
+            atleta.save()
+            return redirect("perfil_usuario")
+    else:
+        form = AtletaForm()
+
+    return render(request, "fitschool/pages/criarAtleta.html", {"form": form})
+
+
+@login_required
+def perfil_usuario(request):
+    atleta = getattr(request.user, "atleta", None)
+
+    if not atleta:
+        return redirect("criar_atleta")
+
+    if request.method == "POST":
+        form = AtletaForm(request.POST, instance=atleta)
+        if form.is_valid():
+            form.save()
+            return redirect("perfil_usuario")
+    else:
+        form = AtletaForm(instance=atleta)
+
+    # Cálculo do IMC
+    imc = None
+    if atleta.peso and atleta.altura:
+        try:
+            imc = float(atleta.peso) / (float(atleta.altura) ** 2)
+        except ZeroDivisionError:
+            imc = None
+
+    return render(request, "fitschool/pages/perfilUsuario.html", {
+        "form": form,
+        "atleta": atleta,
+        "imc": imc
+    })
+
+@login_required
+def excluir_atleta(request):
+    atleta = getattr(request.user, "atleta", None)
+    if atleta:
+        atleta.delete()
+    return redirect("criar_atleta")

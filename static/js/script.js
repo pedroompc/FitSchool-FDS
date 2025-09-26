@@ -1,59 +1,88 @@
-// Função para simular o login
+// === LOGIN / DASHBOARD ===
 function login() {
     document.getElementById('loginForm').style.display = 'none';
     document.getElementById('dashboard').style.display = 'block';
 }
 
-// Função para mostrar o formulário de login
 function showLogin() {
     document.getElementById('loginForm').style.display = 'block';
     document.getElementById('dashboard').style.display = 'none';
     closeAllModals();
 }
 
-// Função para mostrar modal de registro
+// === MODAIS ===
 function showRegister() {
     document.getElementById('registerModal').style.display = 'flex';
 }
 
-// Função para mostrar modal de adicionar treino
 function showAddWorkout() {
     document.getElementById('addWorkoutModal').style.display = 'flex';
 }
 
-// Função para fechar modal
+function showAddWorkoutModal() {
+    document.getElementById('addWorkoutModal').style.display = 'flex';
+}
+
+function showEditWorkoutModal() {
+    document.getElementById('workout-name').value = 'Superiores A';
+    document.getElementById('workout-type-modal').value = 'strength';
+    document.getElementById('workout-day-modal').value = 'monday';
+    document.getElementById('workout-duration').value = '60';
+    document.getElementById('workout-notes').value = 'Treino de peito e costas';
+
+    document.getElementById('addWorkoutModal').style.display = 'flex';
+    document.querySelector('.modal-title').textContent = 'Editar Treino';
+}
+
 function closeModal(modalId) {
     document.getElementById(modalId).style.display = 'none';
 }
 
-// Fechar todos os modals
 function closeAllModals() {
     document.querySelectorAll('.modal').forEach(modal => {
         modal.style.display = 'none';
     });
 }
 
-// Função para simular registro
+// Fechar modal ao clicar fora
+window.onclick = function(event) {
+    if (event.target.classList.contains('modal')) {
+        event.target.style.display = 'none';
+    }
+};
+
+// === FORMULÁRIOS FAKE ===
 function register() {
     closeModal('registerModal');
     alert('Conta criada com sucesso! Faça login para continuar.');
     document.getElementById('loginForm').style.display = 'block';
 }
 
-// Função para adicionar treino
 function addWorkout() {
     closeModal('addWorkoutModal');
     alert('Treino adicionado com sucesso!');
 }
 
-// Inicialização
-document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('dashboard').style.display = 'none';
-    document.getElementById('loginForm').style.display = 'block';
-    closeAllModals();
-});
+// Prevenir envio fake do workout form
+const workoutForm = document.getElementById('workoutForm');
+if (workoutForm) {
+    workoutForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Treino salvo com sucesso!');
+        closeModal('addWorkoutModal');
+    });
+}
 
-// Simulação de interação com o calendário
+// Prevenir envio fake do athlete form
+const athleteForm = document.getElementById('athlete-form');
+if (athleteForm) {
+    athleteForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Atleta cadastrado com sucesso! (Funcionalidade de envio precisa ser implementada)');
+    });
+}
+
+// === CALENDÁRIO (simulação) ===
 document.querySelectorAll('.calendar-day').forEach(day => {
     day.addEventListener('click', function () {
         if (this.classList.contains('present')) {
@@ -68,67 +97,40 @@ document.querySelectorAll('.calendar-day').forEach(day => {
     });
 });
 
-// Simulação de interatividade básica
+// === SIDEBAR / MENU ===
 document.addEventListener('DOMContentLoaded', function() {
-    // Adicionar evento de clique aos itens do menu
     const menuItems = document.querySelectorAll('.menu a');
+
     menuItems.forEach(item => {
         item.addEventListener('click', function(e) {
-            e.preventDefault();
+            // Só bloqueia se for "#" (ex.: botões fake de modal)
+            if (this.getAttribute("href") === "#") {
+                e.preventDefault();
+            }
+
             menuItems.forEach(i => i.classList.remove('active'));
             this.classList.add('active');
         });
     });
-});
 
-document.addEventListener("DOMContentLoaded", function () {
+    // Toggle sidebar (se existir botão)
     const sidebar = document.getElementById("perfilSidebar");
     const main = document.getElementById("perfilMain");
     const toggleBtn = document.getElementById("toggleSidebar");
 
-    toggleBtn.addEventListener("click", () => {
-        sidebar.classList.toggle("collapsed");
-        main.classList.toggle("expanded");
-    });
+    if (sidebar && main && toggleBtn) {
+        toggleBtn.addEventListener("click", () => {
+            sidebar.classList.toggle("collapsed");
+            main.classList.toggle("expanded");
+        });
+    }
+
+    // Inicialização básica
+    const loginForm = document.getElementById('loginForm');
+    const dashboard = document.getElementById('dashboard');
+    if (dashboard && loginForm) {
+        dashboard.style.display = 'none';
+        loginForm.style.display = 'block';
+    }
+    closeAllModals();
 });
-
-// Função para mostrar modal de adicionar treino
-function showAddWorkoutModal() {
-  document.getElementById('addWorkoutModal').style.display = 'flex';
-}
-
-// Função para mostrar modal de editar treino
-function showEditWorkoutModal() {
-  document.getElementById('workout-name').value = 'Superiores A';
-  document.getElementById('workout-type-modal').value = 'strength';
-  document.getElementById('workout-day-modal').value = 'monday';
-  document.getElementById('workout-duration').value = '60';
-  document.getElementById('workout-notes').value = 'Treino de peito e costas';
-
-  document.getElementById('addWorkoutModal').style.display = 'flex';
-  document.querySelector('.modal-title').textContent = 'Editar Treino';
-}
-
-// Função para fechar modal
-function closeModal(modalId) {
-  document.getElementById(modalId).style.display = 'none';
-}
-
-// Fechar modal ao clicar fora dele
-window.onclick = function(event) {
-  if (event.target.classList.contains('modal')) {
-    event.target.style.display = 'none';
-  }
-}
-
-// Prevenir envio do formulário
-document.getElementById('workoutForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  alert('Treino salvo com sucesso!');
-  closeModal('addWorkoutModal');
-});
-
-document.getElementById('athlete-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Atleta cadastrado com sucesso! (Funcionalidade de envio precisa ser implementada)');
-            });

@@ -27,3 +27,12 @@ class Frequencia(models.Model):
 
     def __str__(self):
         return f"{self.usuario.username} - {self.data} - {self.status}"
+
+class Atleta(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="atleta")
+    nome = models.CharField(max_length=150)
+    apelido = models.CharField(max_length=50, blank=True)
+    idade = models.PositiveIntegerField(null=True, blank=True)
+    peso = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
+    altura = models.DecimalField(max_digits=4, decimal_places=2, null=True, blank=True)
+    objetivo = models.TextField(blank=True)

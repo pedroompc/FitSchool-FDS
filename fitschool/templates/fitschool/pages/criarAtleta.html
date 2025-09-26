@@ -6,56 +6,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fitschool - Cadastro</title>
     <link rel="stylesheet" href="{% static 'css/stylecriarAtleta.css' %}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <header class="main-header">
-        <h1>Fitschool</h1>
-    </header>
+<header class="main-header">
+    <h1>Fitschool</h1>
+</header>
 
-    <main class="container">
-        <form class="signup-form">
-            <div class="form-header">
-                <h2>Cadastro</h2>
+<main class="container">
+    <form class="signup-form" method="post" action="{% url 'criar_atleta' %}">
+        {% csrf_token %}
+        <div class="form-header">
+            <h2>Cadastro</h2>
+        </div>
+
+        <div class="form-grid">
+            <div class="form-group">
+                <label for="nome">Nome</label>
+                <input type="text" id="nome" name="nome" required>
             </div>
-
-            <div class="form-grid">
-                <div class="form-group">
-                    <label for="nome">Nome</label>
-                    <input type="text" id="nome" name="nome" required>
-                </div>
-                <div class="form-group">
-                    <label for="apelido">Apelido</label>
-                    <input type="text" id="apelido" name="apelido" required>
-                </div>
-                <div class="form-group">
-                    <label for="idade">Idade</label>
-                    <input type="number" id="idade" name="idade" required>
-                </div>
-                 <div class="form-group">
-                    <label for="peso">Peso (kg)</label>
-                    <input type="number" id="peso" name="peso" step="0.1" required>
-                </div>
-                <div class="form-group">
-                    <label for="altura">Altura (m)</label>
-                    <input type="number" id="altura" name="altura" step="0.01" required>
-                </div>
-                <div class="form-group full-width">
-                    <label for="objetivo">Objetivo Inicial</label>
-                    <textarea id="objetivo" name="objetivo" rows="3"></textarea>
-                </div>
+            <div class="form-group">
+                <label for="apelido">Apelido</label>
+                <input type="text" id="apelido" name="apelido" required>
             </div>
+            <div class="form-group">
+                <label for="idade">Idade</label>
+                <input type="number" id="idade" name="idade" required>
+            </div>
+            <div class="form-group">
+                <label for="peso">Peso (kg)</label>
+                <input type="number" id="peso" name="peso" step="0.1" required>
+            </div>
+            <div class="form-group">
+                <label for="altura">Altura (m)</label>
+                <input type="number" id="altura" name="altura" step="0.01" required>
+            </div>
+            <div class="form-group full-width">
+                <label for="objetivo">Objetivo Inicial</label>
+                <textarea id="objetivo" name="objetivo" rows="3"></textarea>
+            </div>
+        </div>
 
-            <button type="submit" class="btn-submit">Cadastre-se</button>
-            
-            <p class="login-link">
-                Volte para o <a href="#">Dashboard</a>
-            </p>
-        </form>
-    </main>
-    
+        <button type="submit" class="btn-submit">Cadastre-se</button>
+
+        <p class="login-link">
+            Volte para o <a href="{% url 'menu' %}">Dashboard</a>
+        </p>
+    </form>
+</main>
+
 </body>
 </html>

@@ -3,6 +3,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .models import Perfil
+from .models import Atleta
 
 class RegistroForm(UserCreationForm):
     email = forms.EmailField(
@@ -36,3 +37,8 @@ class PerfilForm(forms.ModelForm):
             "altura": forms.NumberInput(attrs={"class": "form-control"}),
             "meta": forms.Textarea(attrs={"class": "form-control", "rows": 3}),
         }
+
+class AtletaForm(forms.ModelForm):
+    class Meta:
+        model = Atleta
+        fields = ["nome", "apelido", "idade", "peso", "altura", "objetivo"]

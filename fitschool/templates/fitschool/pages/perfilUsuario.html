@@ -7,7 +7,6 @@
     <title>Fitschool - Perfil do Usuário</title>
     <!-- CSS Global -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <!-- CSS exclusivo do perfil -->
     <link rel="stylesheet" href="{% static 'css/style2.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -27,11 +26,11 @@
         </div>
         
         <ul class="menu">
-            <li><a href="{% url 'criarAtleta' %}"><i class="fa-solid fa-plus"></i>Criar Atleta</a></li>
-            <li><a href= "{% url 'menu' %}"><i  class="fa-solid fa-table-columns"></i>Dashboard</a></li>
+            <li><a href="{% url 'criar_atleta' %}"><i class="fa-solid fa-plus"></i> Criar Atleta</a></li>
+            <li><a href="{% url 'menu' %}"><i class="fa-solid fa-table-columns"></i> Dashboard</a></li>
             <li><a href="#" class="active"><i class="fas fa-user"></i> Meu Perfil</a></li>
             <li><a href="{% url 'meusTreinos' %}"><i class="fas fa-dumbbell"></i> Meus Treinos</a></li>
-            <li><a href= "{% url 'frequencia' %}"><i class="fas fa-calendar-check"></i> Frequência</a></li>
+            <li><a href="{% url 'frequencia' %}"><i class="fas fa-calendar-check"></i> Frequência</a></li>
             <li><a href="#"><i class="fas fa-bell"></i> Notificações</a></li>
             <li><a href="#"><i class="fas fa-chalkboard-teacher"></i> Professores</a></li>
         </ul>
@@ -46,53 +45,63 @@
         <div class="profile-section">
             <!-- Informações do Perfil -->
             <div class="profile-card">
-    <div class="profile-header">
-        <div class="profile-avatar">U</div>
-        <div class="profile-info">
-            <h3>{{ user.username }}</h3>
-            <p>{{ user.email }}</p>
-        </div>
-    </div>
+                <div class="profile-header">
+                    <div class="profile-avatar">{{ user.username|first|upper }}</div>
+                    <div class="profile-info">
+                        <h3>{{ user.username }}</h3>
+                        <p>{{ user.email }}</p>
+                    </div>
+                </div>
 
-    <div class="profile-details">
-        <form method="post">
-            {% csrf_token %}
+                <div class="profile-details">
+                    <form method="post">
+                        {% csrf_token %}
 
-            <div class="detail-item">
-                <span class="detail-label">Idade:</span>
-                {{ form.idade }}
+                        <div class="detail-item">
+                            <span class="detail-label">Nome:</span>
+                            {{ form.nome }}
+                        </div>
+
+                        <div class="detail-item">
+                            <span class="detail-label">Apelido:</span>
+                            {{ form.apelido }}
+                        </div>
+
+                        <div class="detail-item">
+                            <span class="detail-label">Idade:</span>
+                            {{ form.idade }}
+                        </div>
+
+                        <div class="detail-item">
+                            <span class="detail-label">Altura (m):</span>
+                            {{ form.altura }}
+                        </div>
+
+                        <div class="detail-item">
+                            <span class="detail-label">Peso (kg):</span>
+                            {{ form.peso }}
+                        </div>
+
+                        <div class="detail-item">
+                            <span class="detail-label">Objetivo:</span>
+                            {{ form.objetivo }}
+                        </div>
+
+                        <div class="detail-item">
+                            <span class="detail-label">IMC:</span>
+                            <span class="detail-value">
+                                {% if imc %}
+                                    {{ imc|floatformat:2 }}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </span>
+                        </div>
+
+                        <button type="submit" class="btn">Salvar Alterações</button>
+                    </form>
+                </div>
             </div>
-
-            <div class="detail-item">
-                <span class="detail-label">Altura (cm):</span>
-                {{ form.altura }}
-            </div>
-
-            <div class="detail-item">
-                <span class="detail-label">Peso (kg):</span>
-                {{ form.peso }}
-            </div>
-
-            <div class="detail-item">
-                <span class="detail-label">Meta:</span>
-                {{ form.meta }}
-            </div>
-
-            <div class="detail-item">
-                <span class="detail-label">IMC:</span>
-                <span class="detail-value">
-                    {% if imc %}
-                        {{ imc|floatformat:2 }}
-                    {% else %}
-                        -
-                    {% endif %}
-                </span>
-            </div>
-
-            <button type="submit" class="btn">Salvar Alterações</button>
-        </form>
-    </div>
-</div>
             
             <!-- Meus Objetivos -->
             <div class="goals-card">
@@ -102,16 +111,18 @@
                 </div>
                 
                 <div class="goal-item">
-    <div class="goal-icon">
-        <i class="fas fa-weight"></i>
-    </div>
-    <div class="goal-info">
-        <h4>Meta</h4>
-        <p>{{ perfil.meta|default:"Nenhuma meta definida" }}</p>
-    </div>
-</div>
-        
+                    <div class="goal-icon">
+                        <i class="fas fa-weight"></i>
+                    </div>
+                    <div class="goal-info">
+                        <h4>Objetivo</h4>
+                        <p>{{ atleta.objetivo|default:"Nenhum objetivo definido" }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 
-    <script src="script.js"></script>
+    <script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>
