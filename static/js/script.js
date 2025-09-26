@@ -97,40 +97,22 @@ document.querySelectorAll('.calendar-day').forEach(day => {
     });
 });
 
-// === SIDEBAR / MENU ===
-document.addEventListener('DOMContentLoaded', function() {
-    const menuItems = document.querySelectorAll('.menu a');
+document.addEventListener("DOMContentLoaded", function () {
+    const editBtn = document.querySelector(".btn-action.edit");
+    const profileForm = document.querySelector(".profile-details form");
 
-    menuItems.forEach(item => {
-        item.addEventListener('click', function(e) {
-            // Só bloqueia se for "#" (ex.: botões fake de modal)
-            if (this.getAttribute("href") === "#") {
-                e.preventDefault();
-            }
-
-            menuItems.forEach(i => i.classList.remove('active'));
-            this.classList.add('active');
-        });
-    });
-
-    // Toggle sidebar (se existir botão)
-    const sidebar = document.getElementById("perfilSidebar");
-    const main = document.getElementById("perfilMain");
-    const toggleBtn = document.getElementById("toggleSidebar");
-
-    if (sidebar && main && toggleBtn) {
-        toggleBtn.addEventListener("click", () => {
-            sidebar.classList.toggle("collapsed");
-            main.classList.toggle("expanded");
+    if (editBtn && profileForm) {
+        editBtn.addEventListener("click", function (e) {
+            e.preventDefault();
+            profileForm.classList.add("editing");
         });
     }
 
-    // Inicialização básica
-    const loginForm = document.getElementById('loginForm');
-    const dashboard = document.getElementById('dashboard');
-    if (dashboard && loginForm) {
-        dashboard.style.display = 'none';
-        loginForm.style.display = 'block';
+    // só adiciona se existir o botão cancelar
+    const cancelBtn = document.querySelector(".cancel-edit");
+    if (cancelBtn && profileForm) {
+        cancelBtn.addEventListener("click", function () {
+            profileForm.classList.remove("editing");
+        });
     }
-    closeAllModals();
 });

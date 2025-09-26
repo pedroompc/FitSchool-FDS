@@ -36,3 +36,12 @@ class Atleta(models.Model):
     peso = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
     altura = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
     objetivo = models.TextField(blank=True)
+
+    @property
+    def imc(self):
+        if self.altura and self.peso and self.altura > 0:
+            return float(self.peso) / (float(self.altura) ** 2)
+        return None
+
+    def __str__(self):
+        return self.nome

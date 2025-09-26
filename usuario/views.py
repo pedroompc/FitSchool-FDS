@@ -102,30 +102,25 @@ def criar_Atleta(request):
 
 @login_required
 def criar_atleta(request):
-    try:
-        atleta = Atleta.objects.get(user=request.user)
-    except Atleta.DoesNotExist:
-        atleta = None
+    if hasattr(request.user, "atleta"):
+        # se já existe, manda pra edição
+        return redirect("editar_atleta")
 
     if request.method == "POST":
-        form = AtletaForm(request.POST, instance=atleta)  # se já existe, edita
+        form = AtletaForm(request.POST)
         if form.is_valid():
             atleta = form.save(commit=False)
             atleta.user = request.user
             atleta.save()
             return redirect("perfil_usuario")
     else:
-        form = AtletaForm(instance=atleta)  # pré-preenche se já existir
+        form = AtletaForm()
 
     return render(request, "fitschool/pages/criarAtleta.html", {"form": form})
-
-
-
 
 @login_required
 def perfil_usuario(request):
     atleta = getattr(request.user, "atleta", None)
-
     if not atleta:
         return redirect("criar_atleta")
 
@@ -137,23 +132,31 @@ def perfil_usuario(request):
     else:
         form = AtletaForm(instance=atleta)
 
-    # Cálculo do IMC
-    imc = None
-    if atleta.peso and atleta.altura:
-        try:
-            imc = float(atleta.peso) / (float(atleta.altura) ** 2)
-        except ZeroDivisionError:
-            imc = None
-
     return render(request, "fitschool/pages/perfilUsuario.html", {
-        "form": form,
         "atleta": atleta,
-        "imc": imc
+        "form": form
     })
+
+@login_required
+def editar_atleta(request):
+    atleta = getattr(request.user, "atleta", None)
+    if not atleta:
+        return redirect("criar_atleta")
+
+    if request.method == "POST":
+        form = AtletaForm(request.POST, instance=atleta)
+        if form.is_valid():
+            form.save()
+            return redirect("perfil_usuario")
+    else:
+        form = AtletaForm(instance=atleta)
+
+    return render(request, "fitschool/pages/editarAtleta.html", {"form": form})
 
 @login_required
 def excluir_atleta(request):
     atleta = getattr(request.user, "atleta", None)
-    if atleta:
+    if request.method == "POST" and atleta:
         atleta.delete()
-    return redirect("criar_atleta")
+        return redirect("menu")  # manda pro dashboard
+    return render(request, "fitschool/pages/confirmar_delete.html", {"atleta": atleta})

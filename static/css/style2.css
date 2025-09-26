@@ -291,6 +291,41 @@ body {
     border-radius: 4px;
 }
 
+.profile-actions {
+    margin-left: auto;
+    display: flex;
+    gap: 10px;
+}
+
+.btn-action {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: var(--gray);
+    transition: color 0.3s;
+}
+
+.btn-action.edit:hover {
+    color: var(--primary);
+}
+
+.btn-action.delete:hover {
+    color: var(--danger);
+}
+
+.edit-mode {
+    display: none;
+}
+
+.editing .view-mode {
+    display: none;
+}
+
+.editing .edit-mode {
+    display: inline-block;
+}
+
 /* Responsividade */
 @media (max-width: 768px) {
     body {

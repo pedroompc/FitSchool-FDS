@@ -16,7 +16,7 @@
         <div class="logo">
             <h1>Fitschool</h1>
         </div>
-        
+
         <div class="user-info">
             <div class="avatar">{{ user.username|first|upper }}</div>
             <div class="user-details">
@@ -24,7 +24,7 @@
                 <p>{{ user.email }}</p>
             </div>
         </div>
-        
+
         <ul class="menu">
             <li><a href="{% url 'criar_atleta' %}"><i class="fa-solid fa-plus"></i> Criar Atleta</a></li>
             <li><a href="{% url 'menu' %}"><i class="fa-solid fa-table-columns"></i> Dashboard</a></li>
@@ -35,15 +35,15 @@
             <li><a href="#"><i class="fas fa-chalkboard-teacher"></i> Professores</a></li>
         </ul>
     </aside>
-    
+
     <!-- Conteúdo Principal -->
     <main class="main-content">
         <div class="header">
             <h2>Perfil do Usuário</h2>
         </div>
-        
+
         <div class="profile-section">
-            <!-- Informações do Perfil -->
+            <!-- Card de perfil -->
             <div class="profile-card">
                 <div class="profile-header">
                     <div class="profile-avatar">{{ user.username|first|upper }}</div>
@@ -51,40 +51,89 @@
                         <h3>{{ user.username }}</h3>
                         <p>{{ user.email }}</p>
                     </div>
+
+                    <!-- Botões -->
+                    <div class="profile-actions">
+                        <button class="btn-action edit" title="Editar">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <form method="post" action="{% url 'excluir_atleta' %}" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn-action delete" title="Excluir"
+                                onclick="return confirm('Tem certeza que deseja excluir seu perfil?')">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </form>
+                    </div>
                 </div>
 
+                <!-- Detalhes -->
                 <div class="profile-details">
-                    {% if atleta %}
-                        <div class="detail-item"><span class="detail-label">Nome:</span> {{ atleta.nome }}</div>
-                        <div class="detail-item"><span class="detail-label">Apelido:</span> {{ atleta.apelido }}</div>
-                        <div class="detail-item"><span class="detail-label">Idade:</span> {{ atleta.idade }}</div>
-                        <div class="detail-item"><span class="detail-label">Altura (m):</span> {{ atleta.altura }}</div>
-                        <div class="detail-item"><span class="detail-label">Peso (kg):</span> {{ atleta.peso }}</div>
-                        <div class="detail-item"><span class="detail-label">Objetivo:</span> {{ atleta.objetivo|default:"Nenhum objetivo definido" }}</div>
+                    <form method="post">
+                        {% csrf_token %}
+
+                        <div class="detail-item">
+                            <span class="detail-label">Nome:</span>
+                            <span class="view-mode">{{ atleta.nome }}</span>
+                            <span class="edit-mode">{{ form.nome }}</span>
+                        </div>
+
+                        <div class="detail-item">
+                            <span class="detail-label">Apelido:</span>
+                            <span class="view-mode">{{ atleta.apelido }}</span>
+                            <span class="edit-mode">{{ form.apelido }}</span>
+                        </div>
+
+                        <div class="detail-item">
+                            <span class="detail-label">Idade:</span>
+                            <span class="view-mode">{{ atleta.idade }}</span>
+                            <span class="edit-mode">{{ form.idade }}</span>
+                        </div>
+
+                        <div class="detail-item">
+                            <span class="detail-label">Altura (m):</span>
+                            <span class="view-mode">{{ atleta.altura }}</span>
+                            <span class="edit-mode">{{ form.altura }}</span>
+                        </div>
+
+                        <div class="detail-item">
+                            <span class="detail-label">Peso (kg):</span>
+                            <span class="view-mode">{{ atleta.peso }}</span>
+                            <span class="edit-mode">{{ form.peso }}</span>
+                        </div>
+
+                        <div class="detail-item">
+                            <span class="detail-label">Objetivo:</span>
+                            <span class="view-mode">{{ atleta.objetivo|default:"Nenhum objetivo definido" }}</span>
+                            <span class="edit-mode">{{ form.objetivo }}</span>
+                        </div>
+
                         <div class="detail-item">
                             <span class="detail-label">IMC:</span>
                             <span class="detail-value">
-                                {% if imc %}
-                                    {{ imc|floatformat:2 }}
+                                {% if atleta.imc %}
+                                    {{ atleta.imc|floatformat:2 }}
                                 {% else %}
                                     -
                                 {% endif %}
                             </span>
                         </div>
-                    {% else %}
-                        <p>Você ainda não cadastrou seus dados de atleta.</p>
-                        <a href="{% url 'criar_atleta' %}" class="btn">Criar Atleta</a>
-                    {% endif %}
+
+                        <div class="edit-mode">
+                            <button type="submit" class="btn">Salvar Alterações</button>
+                            <button type="button" class="btn cancel-edit">Cancelar</button>
+                        </div>
+                    </form>
                 </div>
             </div>
-            
+
             <!-- Meus Objetivos -->
             <div class="goals-card">
                 <div class="card-header">
                     <h3>Meus Objetivos</h3>
                     <a href="#">Ver todos <i class="fas fa-chevron-right"></i></a>
                 </div>
-                
+
                 <div class="goal-item">
                     <div class="goal-icon">
                         <i class="fas fa-weight"></i>
