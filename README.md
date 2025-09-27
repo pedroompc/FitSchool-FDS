@@ -119,6 +119,10 @@ Criar uma plataforma intuitiva onde usuários possam:
   <img width="1589" height="807" alt="Image" src="https://github.com/user-attachments/assets/86e909cd-5088-4a5d-b211-21d9f533a85c" />
 </p>
 
+<p align="center">
+  <strong>[Board Jira]</strong><br>
+<img width="2902" height="1290" alt="Image" src="https://github.com/user-attachments/assets/3bf6679f-96b3-4c27-bc1d-3b4564bdafba" />
+</p>
     
 
    
