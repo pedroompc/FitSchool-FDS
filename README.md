@@ -57,7 +57,7 @@ Criar uma plataforma intuitiva onde usuários possam:
 - **Backend:** Django   
 - **Frontend:** HTML, CSS, JavaScript  
 - **Banco de Dados:** SQLite   
-- **Deploy:** (A ser decidido) 
+- **Deploy:** Azure
 - **Controle de Versão:** Git e GitHub  
 
 ## 👥 Equipe de Desenvolvimento  
