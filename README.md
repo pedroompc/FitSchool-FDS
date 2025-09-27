@@ -141,6 +141,12 @@ ser mais eficiente e conseguir ir gradualmente concluido nossa entrega no tempo 
   -Fizemos reuniões no discord, tanto com o grupo todo presente onde apresentávamos a tela e era explicado o que foi feito para todos puderam dar suas
   opinões e para todos ficarem 100% por dentro de tudo que era feito e reuniões em duplas para a realização das atividades da dupla.Dessa forma, era
   possível que todo o grupo participasse de tudo,ficasse ciente de tudo consequentemente chegando no melhor resultado possível.
+
+
+      FALTA ATUALIZAR O LINK
+  <a href="https://youtu.be/fvkM9IUcWMM">
+      <img src="https://img.shields.io/badge/Screencast-FF0000?style=for-the-badge&logo=youtube&logoColor=white" />
+    </a>
     
 
    
