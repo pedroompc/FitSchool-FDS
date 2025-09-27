@@ -110,7 +110,7 @@ Criar uma plataforma intuitiva onde usuários possam:
   <summary>✅ Entrega 02</summary>
 
   <p align="center">
-      **[Issues GitHub]**
+      <strong>[Issues GitHub]</strong><br>
      <img width="1573" height="540" alt="Image" src="https://github.com/user-attachments/assets/23f90bcb-4b85-4e38-bb8a-744d51f69b63" />
   </p>
  
