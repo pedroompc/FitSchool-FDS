@@ -109,15 +109,16 @@ Criar uma plataforma intuitiva onde usuários possam:
    <details>
   <summary>✅ Entrega 02</summary>
 
-  <p align="center">
-      <strong>[Issues GitHub]</strong><br>
-     <img width="1573" height="540" alt="Image" src="https://github.com/user-attachments/assets/23f90bcb-4b85-4e38-bb8a-744d51f69b63" />
+ <p align="center">
+  <strong>[Issues GitHub]</strong><br>
+  <img width="1573" height="540" alt="Image" src="https://github.com/user-attachments/assets/23f90bcb-4b85-4e38-bb8a-744d51f69b63" />
+</p>
 
-      <strong>[BackLog Jira]</strong><br>
-        <img width="1589" height="807" alt="Image" src="https://github.com/user-attachments/assets/86e909cd-5088-4a5d-b211-21d9f533a85c" />
-  </p>
- 
-</details>
+<p align="center">
+  <strong>[BackLog Jira]</strong><br>
+  <img width="1589" height="807" alt="Image" src="https://github.com/user-attachments/assets/86e909cd-5088-4a5d-b211-21d9f533a85c" />
+</p>
+
     
 
    
