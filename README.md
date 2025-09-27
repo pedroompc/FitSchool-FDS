@@ -10,6 +10,12 @@
 O **FitSchool** é uma aplicação web desenvolvida em **Django** para auxiliar alunos e frequentadores de academias a organizarem e acompanharem seus treinos de forma eficiente.  
 O sistema permitirá o **cadastro de exercícios**, **criação de rotinas personalizadas** e **acompanhamento do progresso fitness**.
 
+## Links ÚTEIS
+<a href="https://calic4.atlassian.net/jira/software/projects/FS/boards/2/backlog?atlOrigin=eyJpIjoiODQxNjhhZmRjNmVkNDc3OGFkYmQ4NTNiNTE4ODQyNTUiLCJwIjoiaiJ9">
+      <img src="https://img.shields.io/badge/JIRA-0052CC?style=for-the-badge&logo=jira&logoColor=white" />
+<a href="https://www.figma.com/design/nx8izhJhEQD16Oy3i5tuqh/Historias?node-id=0-1&t=bBmDLx6Tdiw7U6DT-1">
+      <img src="https://img.shields.io/badge/FIGMA%20-purple?style=for-the-badge&logo=figma&logoColor=white" />
+
 ---
 
 ## 🎯 Objetivo
