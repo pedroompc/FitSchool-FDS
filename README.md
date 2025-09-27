@@ -123,6 +123,21 @@ Criar uma plataforma intuitiva onde usuários possam:
   <strong>[Board Jira]</strong><br>
 <img width="2902" height="1290" alt="Image" src="https://github.com/user-attachments/assets/3bf6679f-96b3-4c27-bc1d-3b4564bdafba" />
 </p>
+
+**Relatos de Pair Programming**
+-Em primeiro momento, nos reunimos em uma reunião feito no discord para todos ficarem cientes dos requisitos da entrega e em conjunto
+achar montar um plano sobre o que deveria ser feito em ordem, buscando otimizar o tempo e uma organização boa para a equipe.Isso com a meta de 
+ser mais eficiente e conseguir ir gradualmente concluido nossa entrega no tempo determinado.
+
+**Divisão de Funções**
+- Para buscar uma melhor perfomance em reunião nos dividíamos em dupla para que cada dupla realizasse o trabalho designado para tal.A designação
+  das tarefas era feita no grupo de whatsapp a onde buscamos colocar os integrantes em áres que tenham mais facilidades.Uma dupla ficou responsável
+  pelo HTML/CSS,outra dupla ficou responsável pela urls/models/views e outra dupla ficou com o deploy, e o Readme fizemos em conjunto.
+
+  **Metodologia de Trabalho**
+  -Fizemos reuniões no discord, tanto com o grupo todo presente onde apresentávamos a tela e era explicado o que foi feito para todos puderam dar suas
+  opinões e para todos ficarem 100% por dentro de tudo que era feito e reuniões em duplas para a realização das atividades da dupla.Dessa forma, era
+  possível que todo o grupo participasse de tudo,ficasse ciente de tudo consequentemente chegando no melhor resultado possível.
     
 
    
