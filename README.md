@@ -96,8 +96,6 @@ Criar uma plataforma intuitiva onde usuários possam:
   
   - **[BackLog Jira]**
    <img width="1534" height="198" alt="Image" src="https://github.com/user-attachments/assets/4f14e1cc-d827-426b-a0cf-c5909ff6dfc1" />
- 
-<summary>✅Entrega 02</summary>
 
    
 
