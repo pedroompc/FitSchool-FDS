@@ -110,16 +110,10 @@ Criar uma plataforma intuitiva onde usuários possam:
   <summary>✅ Entrega 02</summary>
 
   <p align="center">
-    <a href="https://example.com/task">
-      <img src="https://img.shields.io/badge/JIRA-0052CC?style=for-the-badge&logo=jira&logoColor=white" />
-    </a>
-    <a href="https://youtu.be/example">
-      <img src="https://img.shields.io/badge/Screencast-FF0000?style=for-the-badge&logo=youtube&logoColor=white" />
-    </a>
-    <a href="https://figma.com/example">
-      <img src="https://img.shields.io/badge/Figma-purple?style=for-the-badge&logo=figma&logoColor=white" />
-    </a>
+      **[Issues GitHub]**
+     <img width="1573" height="540" alt="Image" src="https://github.com/user-attachments/assets/23f90bcb-4b85-4e38-bb8a-744d51f69b63" />
   </p>
+ 
 </details>
     
 
