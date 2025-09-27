@@ -15,6 +15,8 @@ O sistema permitirá o **cadastro de exercícios**, **criação de rotinas perso
       <img src="https://img.shields.io/badge/JIRA-0052CC?style=for-the-badge&logo=jira&logoColor=white" />
 <a href="https://www.figma.com/design/nx8izhJhEQD16Oy3i5tuqh/Historias?node-id=0-1&t=bBmDLx6Tdiw7U6DT-1">
       <img src="https://img.shields.io/badge/FIGMA%20-purple?style=for-the-badge&logo=figma&logoColor=white" />
+<a href="https://docs.google.com/document/d/12vsnIQhZbG89ULeSa_zud4LqFG7dVn5y3V7VkFezCMk/edit?tab=t.0#heading=h.w051q7v96onx">
+      <img src="https://img.shields.io/badge/Histórias-blue?style=for-the-badge&logo=google-docs&logoColor=white" />
 
 ---
 
