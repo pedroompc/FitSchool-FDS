@@ -9,8 +9,10 @@ import json
 from .forms import RegistroForm, AtletaForm
 from .models import Frequencia, Atleta
 
+
 @login_required
-def calendario_view(request):
+def frequencia_view(request):
+    # Esta parte calcula as estatísticas para os cards na primeira vez que a página carrega.
     frequencias = Frequencia.objects.filter(usuario=request.user)
     
     dias_presentes = frequencias.filter(status='PRESENTE').count()
@@ -19,14 +21,44 @@ def calendario_view(request):
     taxa_frequencia = (dias_presentes / total_dias * 100) if total_dias > 0 else 0
 
     context = {
-        'frequencias': frequencias, # Você usaria isso para popular o calendário
         'dias_presentes': dias_presentes,
         'dias_ausentes': dias_ausentes,
         'taxa_frequencia': round(taxa_frequencia),
     }
-    return render(request, 'fitschool/pages/calendario.html', context)
+    # Certifique-se que o nome do template aqui está correto
+    return render(request, 'fitschool/pages/frequencia.html', context)
 
-# View para receber a requisição AJAX e registrar/atualizar a presença
+
+@login_required
+def get_frequencia_mes(request):
+    """
+    Esta view responde às requisições do JavaScript para fornecer os dados de 
+    frequência de um mês/ano específico.
+    """
+    if request.method == 'GET':
+        try:
+            year = int(request.GET.get('year'))
+            month = int(request.GET.get('month'))
+
+            # Filtra as frequências para o usuário logado, no ano e mês especificados
+            frequencias = Frequencia.objects.filter(
+                usuario=request.user, # Ajustado para o seu modelo
+                data__year=year,
+                data__month=month
+            )
+
+            # Formata os dados para o JavaScript no formato {"AAAA-MM-DD": "STATUS"}
+            dados_frequencia = {
+                f.data.strftime('%Y-%m-%d'): f.status
+                for f in frequencias
+            }
+
+            return JsonResponse(dados_frequencia)
+        except (TypeError, ValueError):
+            return JsonResponse({'error': 'Ano e mês inválidos.'}, status=400)
+    
+    return JsonResponse({'error': 'Método inválido.'}, status=405)
+
 @login_required
 @require_POST # Garante que esta view só aceite requisições POST
 def registrar_presenca(request):
@@ -91,8 +123,7 @@ def registrar(request):
 def menu_view(request):
     return render(request, "fitschool/pages/menu.html")
 
-def frequencia(request):
-    return render(request, "fitschool/pages/frequencia.html")
+
 
 def meus_treinos(request):
     return render(request, "fitschool/pages/treino.html")
