@@ -142,9 +142,7 @@ ser mais eficiente e conseguir ir gradualmente concluido nossa entrega no tempo 
   opinões e para todos ficarem 100% por dentro de tudo que era feito e reuniões em duplas para a realização das atividades da dupla.Dessa forma, era
   possível que todo o grupo participasse de tudo,ficasse ciente de tudo consequentemente chegando no melhor resultado possível.
 
-
-      (https://djangodeploy-fds-dwacfzgpbeaydqcc.brazilsouth-01.azurewebsites.net)
-  <a href="https://youtu.be/fvkM9IUcWMM">
+  <a href="https://youtu.be/3B7e5boFHCk">
       <img src="https://img.shields.io/badge/Screencast-FF0000?style=for-the-badge&logo=youtube&logoColor=white" />
     </a>
     
