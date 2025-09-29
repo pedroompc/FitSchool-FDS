@@ -1,19 +1,3 @@
-
-- name: Install dependencies
-        run: pip install -r FitSchool-FDS/requirements.txt
-
-- name: Cleaning testing files
-        run: |
-          cd FitSchool-FDS/
-          rm db.sqlite3
-          rm .env
-          cd ..   
-- name: Zip artifact for deployment
-        run: |
-          cd FitSchool-FDS/
-          zip release.zip ./* -r
-          cd ..
-          mv FitSchool-FDS/release.zip .
 name: Build and deploy Python app to Azure Web App - djangodeploy-FDS
 
 on:
@@ -26,59 +10,61 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: read #This is required for actions/checkout
+      contents: read # required for checkout
 
-steps:
-  - uses: actions/checkout@v4
+    steps:
+      - uses: actions/checkout@v4
 
-  - name: Set up Python version
-    uses: actions/setup-python@v5
-    with:
-      python-version: '3.11'
+      - name: Set up Python version
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
 
-  - name: Create and start virtual environment
-    run: |
-      python -m venv venv
-      source venv/bin/activate
+      - name: Create and start virtual environment
+        run: |
+          python -m venv venv
+          source venv/bin/activate
   
-  - name: Install dependencies
-    run: pip install -r requirements.txt
+      - name: Install dependencies
+        run: pip install -r requirements.txt
     
-  # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
+      # Optional: run Django tests here
+      # - name: Run tests
+      #   run: python manage.py test
 
-  - name: Upload artifact for deployment jobs
-    uses: actions/upload-artifact@v4
-    with:
-      name: python-app
-      path: |
-        .
-        !venv/
+      - name: Upload artifact for deployment jobs
+        uses: actions/upload-artifact@v4
+        with:
+          name: python-app
+          path: |
+            .
+            !venv/
 
   deploy:
     runs-on: ubuntu-latest
     needs: build
     permissions:
-      id-token: write #This is required for requesting the JWT
-      contents: read #This is required for actions/checkout
+      id-token: write
+      contents: read
 
-steps:
-  - name: Download artifact from build job
-    uses: actions/download-artifact@v4
-    with:
-      name: python-app
+    steps:
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v4
+        with:
+          name: python-app
   
-  - name: Login to Azure
-    uses: azure/login@v2
-    with:
-      client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_7359C8F847AB45A9B8CB9680EF1B3DE2 }}
-      tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_29B02DAEC0484BEB98DF41E5542A8A8E }}
-      subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_4FA822FC76C94ED5AC25D3B03C2B9C39 }}
+      - name: Login to Azure
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_7359C8F847AB45A9B8CB9680EF1B3DE2 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_29B02DAEC0484BEB98DF41E5542A8A8E }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_4FA822FC76C94ED5AC25D3B03C2B9C39 }}
 
-  - name: 'Deploy to Azure Web App'
-    uses: azure/webapps-deploy@v3
-    id: deploy-to-webapp
-    with:
-      app-name: 'djangodeploy-FDS'
-      slot-name: 'Production'
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v3
+        id: deploy-to-webapp
+        with:
+          app-name: 'djangodeploy-FDS'
+          slot-name: 'Production'
 
 
