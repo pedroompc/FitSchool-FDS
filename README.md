@@ -143,7 +143,7 @@ ser mais eficiente e conseguir ir gradualmente concluido nossa entrega no tempo 
   possível que todo o grupo participasse de tudo,ficasse ciente de tudo consequentemente chegando no melhor resultado possível.
 
 
-      FALTA ATUALIZAR O LINK
+      (https://djangodeploy-fds-dwacfzgpbeaydqcc.brazilsouth-01.azurewebsites.net)
   <a href="https://youtu.be/fvkM9IUcWMM">
       <img src="https://img.shields.io/badge/Screencast-FF0000?style=for-the-badge&logo=youtube&logoColor=white" />
     </a>
