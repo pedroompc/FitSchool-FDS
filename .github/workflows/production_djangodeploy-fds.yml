@@ -27,8 +27,8 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      # Opcional: rodar testes Django
-      # - name: Run tests
+      # (Opcional) rodar testes do Django
+      # - name: Run Django tests
       #   run: python manage.py test
 
       - name: Login to Azure
@@ -37,6 +37,7 @@ jobs:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID }}
+          client-secret: ${{ secrets.AZUREAPPSERVICE_CLIENTSECRET }}
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
@@ -44,4 +45,7 @@ jobs:
         with:
           app-name: 'djangodeploy-FDS'
           slot-name: 'Production'
+
+
+    
 
