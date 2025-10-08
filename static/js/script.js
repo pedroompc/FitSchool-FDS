@@ -116,3 +116,57 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
+
+
+function showAddWorkoutModal() {
+  document.getElementById("addWorkoutModal").style.display = "flex";
+}
+
+function closeModal(modalId) {
+  document.getElementById(modalId).style.display = "none";
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  // Intercepta o envio do formulário do treino
+  const workoutForm = document.querySelector("#addWorkoutModal form");
+  if (workoutForm) {
+    workoutForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(workoutForm);
+      const response = await fetch("", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (response.ok) {
+        // Fecha modal
+        closeModal("addWorkoutModal");
+        // Recarrega a página pra mostrar o novo treino (ou poderíamos atualizar o DOM direto)
+        location.reload();
+      } else {
+        alert("Erro ao salvar treino!");
+      }
+    });
+  }
+});
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  const addExerciseBtn = document.getElementById('add-exercise-btn');
+
+  if (addExerciseBtn) {
+    addExerciseBtn.addEventListener('click', function () {
+      const container = document.getElementById('exercise-container');
+      if (!container) return;
+
+      const newForm = container.children[0].cloneNode(true);
+
+      // Limpa os campos do novo formulário
+      newForm.querySelectorAll('input').forEach(input => input.value = '');
+
+      // Adiciona o novo bloco de exercício
+      container.appendChild(newForm);
+    });
+  }
+});

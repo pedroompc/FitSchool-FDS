@@ -74,101 +74,109 @@
       </div>
 
       <div class="workout-list">
-        <!-- Cards de exemplo -->
+        {% if treinos %}
+          {% for treino in treinos %}
         <div class="workout-card">
           <div class="workout-header">
-            <h3 class="workout-title">Superiores A</h3>
-            <span class="workout-type">Força</span>
+            <h3 class="workout-title">{{ treino.nome }}</h3>
+            <span class="workout-type">{{treino.tipo | title}}</span>
           </div>
+
           <div class="workout-body">
-            <div class="workout-detail"><span>Dia:</span><span>Segunda-feira</span></div>
-            <div class="workout-detail"><span>Duração:</span><span>60 min</span></div>
-            <div class="workout-detail"><span>Exercícios:</span><span>5</span></div>
-            <div class="exercise-list">
-              <div class="exercise-item"><span>Supino Reto</span><span>3x12 - 40kg</span></div>
-              <div class="exercise-item"><span>Remada Curvada</span><span>3x10 - 35kg</span></div>
-              <div class="exercise-item"><span>Desenvolvimento</span><span>3x12 - 20kg</span></div>
-            </div>
+            <div class="workout-detail"><span>Dia:</span><span>{{ treino.dia_semana|title }}</span></div>
+            <div class="workout-detail"><span>Duração:</span><span>{{ treino.duracao}} min</span></div>
+            <div class="workout-detail"><span>Observações:</span><span>{{ treino.observacoes|default:"—" }}</span></div>
           </div>
-          <div class="workout-footer">
-            <div class="workout-actions">
-              <button class="btn-icon" title="Iniciar treino"><i class="fas fa-play"></i></button>
-              <button class="btn-icon" title="Editar treino" onclick="showEditWorkoutModal()"><i class="fas fa-edit"></i></button>
-              <button class="btn-icon" title="Excluir treino"><i class="fas fa-trash"></i></button>
-            </div>
-            <span class="workout-status completed">Concluído</span>
-          </div>
+
+           <div class="workout-footer">
+        <div class="workout-actions">
+          <form action="{% url 'excluir_treino' treino.id %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn-icon" title="Excluir treino"><i class="fas fa-trash"></i></button>
+          </form>
         </div>
+        <span class="workout-status completed">Concluído</span>
       </div>
     </div>
-
-    <footer>
-      <p>FitSchool &copy; 2025 - Todos os direitos reservados</p>
-    </footer>
+    {% endfor %}
+  {% else %}
+  <div class="empty-state">
+    <i class="fas fa-dumbbell"></i>
+    <p>Nenhum treino cadastrado ainda</p>
   </div>
+  {% endif %}
+</div>
 
   <!-- Modal Adicionar Treino -->
-  <div class="modal" id="addWorkoutModal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title">Adicionar Novo Treino</h2>
-        <span class="close" onclick="closeModal('addWorkoutModal')">&times;</span>
+<div class="modal" id="addWorkoutModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2 class="modal-title">Adicionar Novo Treino</h2>
+      <span class="close" onclick="closeModal('addWorkoutModal')">&times;</span>
+    </div>
+
+    <!-- Formulário Django -->
+    <form method="POST">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="id_nome">Nome do Treino</label>
+        {{ form.nome }}
       </div>
-      <form id="workoutForm">
+
+      <div class="form-row">
         <div class="form-group">
-          <label for="workout-name">Nome do Treino</label>
-          <input type="text" id="workout-name" placeholder="Ex: Superiores A" required>
+          <label for="id_tipo">Tipo de Treino</label>
+          {{ form.tipo }}
         </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="workout-type-modal">Tipo de Treino</label>
-            <select id="workout-type-modal" required>
-              <option value="">Selecione o tipo</option>
-              <option value="strength">Força</option>
-              <option value="cardio">Cardio</option>
-              <option value="hypertrophy">Hipertrofia</option>
-              <option value="endurance">Resistência</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="workout-day-modal">Dia da Semana</label>
-            <select id="workout-day-modal" required>
-              <option value="">Selecione o dia</option>
-              <option value="monday">Segunda-feira</option>
-              <option value="tuesday">Terça-feira</option>
-              <option value="wednesday">Quarta-feira</option>
-              <option value="thursday">Quinta-feira</option>
-              <option value="friday">Sexta-feira</option>
-              <option value="saturday">Sábado</option>
-              <option value="sunday">Domingo</option>
-            </select>
-          </div>
-        </div>
+
         <div class="form-group">
-          <label for="workout-duration">Duração (minutos)</label>
-          <input type="number" id="workout-duration" placeholder="Ex: 60" min="5" max="180" required>
+          <label for="id_dia_semana">Dia da Semana</label>
+          {{ form.dia_semana }}
         </div>
-        <div class="form-group">
-          <label for="workout-notes">Observações</label>
-          <textarea id="workout-notes" rows="3" placeholder="Observações sobre o treino"></textarea>
-        </div>
-        <h3>Exercícios</h3>
-        <div class="exercise-form">
-          <div class="form-row">
-            <div class="form-group">
-              <label for="exercise-name">Nome do Exercício</label>
-              <input type="text" id="exercise-name" placeholder="Ex: Supino Reto">
-            </div>
-          </div>
-          <button type="button" class="add-exercise-btn">
-            <i class="fas fa-plus"></i> Adicionar Exercício
-          </button>
-        </div>
-        <button type="submit" class="btn btn-primary" style="width: 100%;">Salvar Treino</button>
-      </form>
+      </div>
+
+      <div class="form-group">
+        <label for="id_duracao">Duração (minutos)</label>
+        {{ form.duracao }}
+      </div>
+
+      <div class="form-group">
+        <label for="id_observacoes">Observações</label>
+        {{ form.observacoes }}
+      </div>
+
+      <h3>Exercícios</h3>
+<div id="exercise-container">
+  {% for exercicio_form in exercicio_formset %}
+  <div class="exercise-form">
+    <div class="form-row">
+      <div class="form-group">
+        <label>Nome do Exercício</label>
+        {{ exercicio_form.nome }}
+      </div>
+      <div class="form-group">
+        <label>Séries</label>
+        {{ exercicio_form.series }}
+      </div>
+      <div class="form-group">
+        <label>Repetições</label>
+        {{ exercicio_form.repeticoes }}
+      </div>
     </div>
   </div>
+  {% endfor %}
+</div>
+<button type="button" id="add-exercise-btn" class="add-exercise-btn">
+  <i class="fas fa-plus"></i> Adicionar Exercício
+</button>
 
-  <script src="script.js"></script>
+
+      <button type="submit" class="btn btn-primary" style="width:100%;">Salvar Treino</button>
+    </form>
+  </div>
+</div>
+
+
+  <script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>
