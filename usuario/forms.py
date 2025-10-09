@@ -60,9 +60,8 @@ class ExercicioForm(forms.ModelForm):
 
 ExercicioFormSet = modelformset_factory(
     Exercicio,
-    form=ExercicioForm,
-    extra=1,         
-    min_num=1,       
-    validate_min=True,  
-    can_delete=True,   
+    fields=('nome', 'series', 'repeticoes', 'carga'),
+    extra=7,            
+    max_num=7,           
+    can_delete=False     
 )
