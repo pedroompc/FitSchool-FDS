@@ -318,6 +318,18 @@
             color: var(--primary);
         }
 
+        .btn-icon-edit {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--gray);
+            transition: color 0.3s ease;
+        }
+
+        .btn-icon-edit:hover {
+            color: var(--primary);
+        }
+
         /* Modal */
         .modal {
             display: none;
