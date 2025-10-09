@@ -118,6 +118,7 @@
     <!-- Formulário Django -->
     <form method="POST">
       {% csrf_token %}
+      {{ exercicio_formset.management_form }}
       <div class="form-group">
         <label for="id_nome">Nome do Treino</label>
         {{ form.nome }}

@@ -15,27 +15,14 @@ function showRegister() {
     document.getElementById('registerModal').style.display = 'flex';
 }
 
-function showAddWorkout() {
-    document.getElementById('addWorkoutModal').style.display = 'flex';
-}
-
 function showAddWorkoutModal() {
-    document.getElementById('addWorkoutModal').style.display = 'flex';
-}
-
-function showEditWorkoutModal() {
-    document.getElementById('workout-name').value = 'Superiores A';
-    document.getElementById('workout-type-modal').value = 'strength';
-    document.getElementById('workout-day-modal').value = 'monday';
-    document.getElementById('workout-duration').value = '60';
-    document.getElementById('workout-notes').value = 'Treino de peito e costas';
-
-    document.getElementById('addWorkoutModal').style.display = 'flex';
-    document.querySelector('.modal-title').textContent = 'Editar Treino';
+    const modal = document.getElementById('addWorkoutModal');
+    if (modal) modal.style.display = 'flex';
 }
 
 function closeModal(modalId) {
-    document.getElementById(modalId).style.display = 'none';
+    const modal = document.getElementById(modalId);
+    if (modal) modal.style.display = 'none';
 }
 
 function closeAllModals() {
@@ -44,43 +31,32 @@ function closeAllModals() {
     });
 }
 
-// Fechar modal ao clicar fora
-window.onclick = function(event) {
+// Fechar modal clicando fora
+window.onclick = function (event) {
     if (event.target.classList.contains('modal')) {
         event.target.style.display = 'none';
     }
 };
 
-// === FORMULÁRIOS FAKE ===
-function register() {
-    closeModal('registerModal');
-    alert('Conta criada com sucesso! Faça login para continuar.');
-    document.getElementById('loginForm').style.display = 'block';
-}
+// === PERFIL DO USUÁRIO ===
+document.addEventListener("DOMContentLoaded", function () {
+    const editBtn = document.querySelector(".btn-action.edit");
+    const profileForm = document.querySelector(".profile-details form");
 
-function addWorkout() {
-    closeModal('addWorkoutModal');
-    alert('Treino adicionado com sucesso!');
-}
+    if (editBtn && profileForm) {
+        editBtn.addEventListener("click", function (e) {
+            e.preventDefault();
+            profileForm.classList.add("editing");
+        });
+    }
 
-// Prevenir envio fake do workout form
-const workoutForm = document.getElementById('workoutForm');
-if (workoutForm) {
-    workoutForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        alert('Treino salvo com sucesso!');
-        closeModal('addWorkoutModal');
-    });
-}
-
-// Prevenir envio fake do athlete form
-const athleteForm = document.getElementById('athlete-form');
-if (athleteForm) {
-    athleteForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        alert('Atleta cadastrado com sucesso! (Funcionalidade de envio precisa ser implementada)');
-    });
-}
+    const cancelBtn = document.querySelector(".cancel-edit");
+    if (cancelBtn && profileForm) {
+        cancelBtn.addEventListener("click", function () {
+            profileForm.classList.remove("editing");
+        });
+    }
+});
 
 // === CALENDÁRIO (simulação) ===
 document.querySelectorAll('.calendar-day').forEach(day => {
@@ -97,76 +73,41 @@ document.querySelectorAll('.calendar-day').forEach(day => {
     });
 });
 
+// === FORMULÁRIO DE TREINO (envio real) ===
 document.addEventListener("DOMContentLoaded", function () {
-    const editBtn = document.querySelector(".btn-action.edit");
-    const profileForm = document.querySelector(".profile-details form");
-
-    if (editBtn && profileForm) {
-        editBtn.addEventListener("click", function (e) {
+    const workoutForm = document.querySelector("#addWorkoutModal form");
+    if (workoutForm) {
+        workoutForm.addEventListener("submit", async (e) => {
             e.preventDefault();
-            profileForm.classList.add("editing");
-        });
-    }
 
-    // só adiciona se existir o botão cancelar
-    const cancelBtn = document.querySelector(".cancel-edit");
-    if (cancelBtn && profileForm) {
-        cancelBtn.addEventListener("click", function () {
-            profileForm.classList.remove("editing");
+            const formData = new FormData(workoutForm);
+            const response = await fetch("", {
+                method: "POST",
+                body: formData,
+            });
+
+            if (response.ok) {
+                closeModal("addWorkoutModal");
+                location.reload(); // Recarrega pra mostrar o novo treino
+            } else {
+                alert("Erro ao salvar treino!");
+            }
         });
     }
 });
 
-
-function showAddWorkoutModal() {
-  document.getElementById("addWorkoutModal").style.display = "flex";
-}
-
-function closeModal(modalId) {
-  document.getElementById(modalId).style.display = "none";
-}
-
-document.addEventListener("DOMContentLoaded", function() {
-  // Intercepta o envio do formulário do treino
-  const workoutForm = document.querySelector("#addWorkoutModal form");
-  if (workoutForm) {
-    workoutForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
-
-      const formData = new FormData(workoutForm);
-      const response = await fetch("", {
-        method: "POST",
-        body: formData,
-      });
-
-      if (response.ok) {
-        // Fecha modal
-        closeModal("addWorkoutModal");
-        // Recarrega a página pra mostrar o novo treino (ou poderíamos atualizar o DOM direto)
-        location.reload();
-      } else {
-        alert("Erro ao salvar treino!");
-      }
-    });
-  }
-});
-
-
+// === ADICIONAR NOVO EXERCÍCIO ===
 document.addEventListener('DOMContentLoaded', function () {
-  const addExerciseBtn = document.getElementById('add-exercise-btn');
+    const addExerciseBtn = document.getElementById('add-exercise-btn');
 
-  if (addExerciseBtn) {
-    addExerciseBtn.addEventListener('click', function () {
-      const container = document.getElementById('exercise-container');
-      if (!container) return;
+    if (addExerciseBtn) {
+        addExerciseBtn.addEventListener('click', function () {
+            const container = document.getElementById('exercise-container');
+            if (!container) return;
 
-      const newForm = container.children[0].cloneNode(true);
-
-      // Limpa os campos do novo formulário
-      newForm.querySelectorAll('input').forEach(input => input.value = '');
-
-      // Adiciona o novo bloco de exercício
-      container.appendChild(newForm);
-    });
-  }
+            const newForm = container.children[0].cloneNode(true);
+            newForm.querySelectorAll('input').forEach(input => input.value = '');
+            container.appendChild(newForm);
+        });
+    }
 });

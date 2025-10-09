@@ -51,9 +51,18 @@ class TreinoForm(forms.ModelForm):
         model = Treino
         fields = ['nome', 'tipo', 'dia_semana', 'duracao', 'observacoes']
 
+
 class ExercicioForm(forms.ModelForm):
     class Meta:
         model = Exercicio
         fields = ['nome', 'series', 'repeticoes']
 
-ExercicioFormSet = modelformset_factory(Exercicio, form=ExercicioForm, extra=1, can_delete=True)
+
+ExercicioFormSet = modelformset_factory(
+    Exercicio,
+    form=ExercicioForm,
+    extra=1,         
+    min_num=1,       
+    validate_min=True,  
+    can_delete=True,   
+)
