@@ -109,10 +109,12 @@
 
           <div class="workout-footer">
             <div class="workout-actions">
-              <form action="{% url 'excluir_treino' treino.id %}" method="post" style="display:inline;">
-                {% csrf_token %}
-                <button type="submit" class="btn-icon" title="Excluir treino"><i class="fas fa-trash"></i></button>
-              </form>
+              <form action="{% url 'excluir_treino' treino.id %}" method="post" style="display:inline;" onsubmit="return confirmarExclusao('{{ treino.nome }}')">
+  {% csrf_token %}
+  <button type="submit" class="btn-icon" title="Excluir treino">
+    <i class="fas fa-trash"></i>
+  </button>
+</form>
             </div>
             <span class="workout-status completed">Concluído</span>
           </div>
@@ -196,7 +198,11 @@
       </div>
     </div>
   </div>
-
+  <script>
+  function confirmarExclusao(nomeTreino) {
+    return confirm(`Tem certeza que deseja excluir o treino "${nomeTreino}"? Esta ação não pode ser desfeita.`);
+  }
+</script>
   <script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>
