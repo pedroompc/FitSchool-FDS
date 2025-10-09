@@ -201,30 +201,23 @@ def meus_treinos(request):
     exercicio_formset = ExercicioFormSet(queryset=Exercicio.objects.none())
 
     if request.method == 'POST':
-        print("📩 Recebi um POST!")
         form = TreinoForm(request.POST)
         exercicio_formset = ExercicioFormSet(request.POST)
-        print("Form válido?", form.is_valid())
-        print("Formset válido?", exercicio_formset.is_valid())
-        print("Erros do form:", form.errors)
-        print("Erros do formset:", exercicio_formset.errors)
 
         if form.is_valid() and exercicio_formset.is_valid():
             treino = form.save(commit=False)
             treino.usuario = request.user
             treino.save()
-            print("✅ Treino salvo:", treino)
 
+            # Salva todos os exercícios vinculados ao treino
             for exercicio_form in exercicio_formset:
                 if exercicio_form.cleaned_data:
                     exercicio = exercicio_form.save(commit=False)
                     exercicio.treino = treino
                     exercicio.save()
-                    print("💪 Exercício salvo:", exercicio)
 
             return redirect('meus_treinos')
 
-    print("Treinos carregados:", treinos)
     return render(request, 'fitschool/pages/treino.html', {
         'treinos': treinos,
         'form': form,
