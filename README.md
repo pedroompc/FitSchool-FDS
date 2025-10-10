@@ -24,7 +24,6 @@ O sistema permitirá o **cadastro de exercícios**, **criação de rotinas perso
 Criar uma plataforma intuitiva onde usuários possam:
 
 - 📌 Registrar seus treinos e exercícios  
-- 📈 Acompanhar seu progresso ao longo do tempo  
 - 🏋️‍♂️ Ter acesso a diferentes programas de treinamento  
 - 📆 Gerenciar sua frequência na academia  
 
@@ -35,13 +34,12 @@ Criar uma plataforma intuitiva onde usuários possam:
 ### 🔐 Sistema de Autenticação
 - Cadastro e login de usuários  
 - Perfis de usuário personalizáveis  
-- Recuperação de senha  
 
 ### 💪 Gestão de Treinos
 - Cadastro de exercícios *(nome, descrição, músculos trabalhados, equipamentos)*  
 - Criação de fichas de treino personalizadas  
 - Categorização por grupos musculares  
-- Definição de séries, repetições e cargas  
+- Definição de séries e repetições
 
 ### 📊 Acompanhamento
 - Registro de treinos realizados  
