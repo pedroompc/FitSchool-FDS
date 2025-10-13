@@ -43,37 +43,6 @@
       </button>
     </div>
 
-    <div class="workout-filters">
-      <div class="filter-group">
-        <label for="workout-type">Tipo de Treino</label>
-        <select id="workout-type">
-          <option value="">Todos os tipos</option>
-          <option value="strength">Força</option>
-          <option value="cardio">Cardio</option>
-          <option value="hypertrophy">Hipertrofia</option>
-          <option value="endurance">Resistência</option>
-        </select>
-      </div>
-      <div class="filter-group">
-        <label for="workout-day">Dia da Semana</label>
-        <select id="workout-day">
-          <option value="">Todos os dias</option>
-          <option value="monday">Segunda-feira</option>
-          <option value="tuesday">Terça-feira</option>
-          <option value="wednesday">Quarta-feira</option>
-          <option value="thursday">Quinta-feira</option>
-          <option value="friday">Sexta-feira</option>
-          <option value="saturday">Sábado</option>
-          <option value="sunday">Domingo</option>
-        </select>
-      </div>
-      <div class="filter-group">
-        <label for="search">Buscar</label>
-        <input type="text" id="search" placeholder="Nome do treino">
-      </div>
-    </div>
-
-    <!-- 🔹 LISTAGEM DOS TREINOS -->
     <div class="workout-list">
       {% if treinos %}
         {% for treino in treinos %}
