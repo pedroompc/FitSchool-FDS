@@ -147,7 +147,11 @@ ser mais eficiente e conseguir ir gradualmente concluido nossa entrega no tempo 
 
     <details>
     <summary>✅Entrega 03</summary>
-    
+          
+     <p align="center">
+  <strong>[Issues GitHub]</strong><br>
+<img width="1920" height="1020" alt="Image" src="https://github.com/user-attachments/assets/3b66fc74-5a7c-44bf-81fa-3da80b044488" />
+</p>
 
    
    
