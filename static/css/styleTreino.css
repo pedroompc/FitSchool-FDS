@@ -178,6 +178,16 @@
             transition: all 0.3s ease;
         }
 
+        .btn-secondary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #d81159;
+            transform: translateY(-2px);
+        }
+
         .btn-primary {
             background: var(--accent);
             color: white;

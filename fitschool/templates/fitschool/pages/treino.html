@@ -207,12 +207,14 @@
       </div>
 
       <h3>Exercícios</h3>
-      <div id="edit-exercise-container"></div>
+<div id="edit-exercise-container"></div>
 
-      <button type="submit" class="btn btn-primary" style="width:100%;">Salvar Alterações</button>
-      <button type="submit" class="btn btn-primary" style="width:100%;">Cancelar</button>
-    </form>
-  </div>
+<div style="display: flex; flex-direction: column; gap: 10px; margin-top: 15px;">
+  <button type="submit" class="btn btn-primary" style="width:100%;">Salvar Alterações</button>
+  <button type="button" class="btn btn-secondary" style="width:100%;"
+          onclick="closeModal('editWorkoutModal')">
+    Cancelar
+  </button>
 </div>
   <script>
   function confirmarExclusao(nomeTreino) {
