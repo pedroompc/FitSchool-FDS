@@ -14,6 +14,7 @@ urlpatterns = [
     path("menu/criarAtleta/", views.criar_atleta, name="criar_atleta"),
     path("menu/excluirAtleta/", views.excluir_atleta, name="excluir_atleta"),
     path('api/get-frequencia/', views.get_frequencia_mes, name='get_frequencia_mes'),
+    path("meusTreinos/editar/<int:id>/", views.editar_treino, name="editar_treino"),
 ]
 
 

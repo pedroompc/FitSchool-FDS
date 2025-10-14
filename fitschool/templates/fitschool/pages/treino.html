@@ -101,75 +101,118 @@
     </div>
 
     <!-- Modal Adicionar Treino -->
-    <div class="modal" id="addWorkoutModal">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h2 class="modal-title">Adicionar Novo Treino</h2>
-          <span class="close" onclick="closeModal('addWorkoutModal')">&times;</span>
+<div class="modal" id="addWorkoutModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2 class="modal-title">Adicionar Novo Treino</h2>
+      <span class="close" onclick="closeModal('addWorkoutModal')">&times;</span>
+    </div>
+
+    <!-- Formulário Django -->
+    <form method="POST">
+      {% csrf_token %}
+      {{ exercicio_formset.management_form }}
+      <div class="form-group">
+        <label for="id_nome">Nome do Treino</label>
+        {{ form.nome }}
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="id_tipo">Tipo de Treino</label>
+          {{ form.tipo }}
         </div>
+        <div class="form-group">
+          <label for="id_dia_semana">Dia da Semana</label>
+          {{ form.dia_semana }}
+        </div>
+      </div>
 
-        <!-- Formulário Django -->
-        <form method="POST">
-          {% csrf_token %}
-          {{ exercicio_formset.management_form }}
-          <div class="form-group">
-            <label for="id_nome">Nome do Treino</label>
-            {{ form.nome }}
-          </div>
+      <div class="form-group">
+        <label for="id_duracao">Duração (minutos)</label>
+        {{ form.duracao }}
+      </div>
 
+      <div class="form-group">
+        <label for="id_observacoes">Observações</label>
+        {{ form.observacoes }}
+      </div>
+
+      <h3>Exercícios</h3>
+      <div id="exercise-container">
+        {% for exercicio_form in exercicio_formset %}
+        <div class="exercise-form">
           <div class="form-row">
             <div class="form-group">
-              <label for="id_tipo">Tipo de Treino</label>
-              {{ form.tipo }}
+              <label>Nome do Exercício</label>
+              {{ exercicio_form.nome }}
             </div>
-
             <div class="form-group">
-              <label for="id_dia_semana">Dia da Semana</label>
-              {{ form.dia_semana }}
+              <label>Séries</label>
+              {{ exercicio_form.series }}
+            </div>
+            <div class="form-group">
+              <label>Repetições</label>
+              {{ exercicio_form.repeticoes }}
             </div>
           </div>
-
-          <div class="form-group">
-            <label for="id_duracao">Duração (minutos)</label>
-            {{ form.duracao }}
-          </div>
-
-          <div class="form-group">
-            <label for="id_observacoes">Observações</label>
-            {{ form.observacoes }}
-          </div>
-
-          <h3>Exercícios</h3>
-          <div id="exercise-container">
-            {% for exercicio_form in exercicio_formset %}
-            <div class="exercise-form">
-              <div class="form-row">
-                <div class="form-group">
-                  <label>Nome do Exercício</label>
-                  {{ exercicio_form.nome }}
-                </div>
-                <div class="form-group">
-                  <label>Séries</label>
-                  {{ exercicio_form.series }}
-                </div>
-                <div class="form-group">
-                  <label>Repetições</label>
-                  {{ exercicio_form.repeticoes }}
-                </div>
-              </div>
-            </div>
-            {% endfor %}
-          </div>
-
-          <button type="button" id="add-exercise-btn" class="add-exercise-btn">
-            <i class="fas fa-plus"></i> Adicionar Exercício
-          </button>
-
-          <button type="submit" class="btn btn-primary" style="width:100%;">Salvar Treino</button>
-        </form>
+        </div>
+        {% endfor %}
       </div>
-    </div>
+
+      <button type="button" id="add-exercise-btn" class="add-exercise-btn">
+        <i class="fas fa-plus"></i> Adicionar Exercício
+      </button>
+
+      <button type="submit" class="btn btn-primary" style="width:100%;">Salvar Treino</button>
+    </form>
   </div>
+</div>
+
+<!-- ✅ Modal Editar Treino (fora do modal de adicionar) -->
+<div class="modal" id="editWorkoutModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2 class="modal-title">Editar Treino</h2>
+      <span class="close" onclick="closeModal('editWorkoutModal')">&times;</span>
+    </div>
+
+    <form id="editWorkoutForm" method="POST">
+      {% csrf_token %}
+      {{ exercicio_formset.management_form }}
+      <div class="form-group">
+        <label for="edit_nome">Nome do Treino</label>
+        <input type="text" name="nome" id="edit_nome">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="edit_tipo">Tipo de Treino</label>
+          <input type="text" name="tipo" id="edit_tipo">
+        </div>
+        <div class="form-group">
+          <label for="edit_dia_semana">Dia da Semana</label>
+          <input type="text" name="dia_semana" id="edit_dia_semana">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="edit_duracao">Duração (minutos)</label>
+        <input type="number" name="duracao" id="edit_duracao">
+      </div>
+
+      <div class="form-group">
+        <label for="edit_observacoes">Observações</label>
+        <textarea name="observacoes" id="edit_observacoes"></textarea>
+      </div>
+
+      <h3>Exercícios</h3>
+      <div id="edit-exercise-container"></div>
+
+      <button type="submit" class="btn btn-primary" style="width:100%;">Salvar Alterações</button>
+    </form>
+  </div>
+</div>
   <script>
   function confirmarExclusao(nomeTreino) {
     return confirm(`Tem certeza que deseja excluir o treino "${nomeTreino}"?`);

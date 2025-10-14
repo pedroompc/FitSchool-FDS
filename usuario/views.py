@@ -229,3 +229,40 @@ def excluir_treino(request, id):
     treino = get_object_or_404(Treino, id=id, usuario=request.user)
     treino.delete()
     return redirect('meus_treinos')
+
+
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
+from .models import Treino, Exercicio
+from .forms import TreinoForm, ExercicioFormSet
+
+@login_required
+def editar_treino(request, id):
+    treino = get_object_or_404(Treino, id=id, usuario=request.user)
+    exercicios = Exercicio.objects.filter(treino=treino)
+    exercicio_formset = ExercicioFormSet(queryset=exercicios)
+
+    if request.method == "POST":
+        form = TreinoForm(request.POST, instance=treino)
+        exercicio_formset = ExercicioFormSet(request.POST, queryset=exercicios)
+
+        if form.is_valid() and exercicio_formset.is_valid():
+            treino = form.save()
+
+            # Atualiza cada exercício do formset
+            for exercicio_form in exercicio_formset:
+                if exercicio_form.cleaned_data:
+                    exercicio = exercicio_form.save(commit=False)
+                    exercicio.treino = treino
+                    exercicio.save()
+
+            return redirect("meusTreinos")
+
+    else:
+        form = TreinoForm(instance=treino)
+
+    return render(request, "fitschool/pages/fitschool/pages/treino.html", {
+        "form": form,
+        "exercicio_formset": exercicio_formset,
+        "treino": treino,
+    })
